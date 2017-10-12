@@ -1,0 +1,50 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "images_85_2376_name": {
+            "defaultValue": "85_2376",
+            "type": "String"
+        },
+        "storageAccounts_esg1_name": {
+            "defaultValue": "esg1",
+            "type": "String"
+        }
+
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/images/85_2376'.",
+            "type": "Microsoft.Compute/images",
+            "name": "[parameters('images_85_2376_name')]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "centralus",
+            "scale": null,
+            "properties": {
+                "storageProfile": {
+                    "osDisk": {
+                        "osType": "Linux",
+                        "osState": "Generalized",
+                        "diskSizeGB": 101,
+                        "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/Appliance_Main_', parameters('images_85_2376_name'),'.vhd'))]",
+                        "caching": "ReadWrite",
+                        "storageAccountType": "Standard_LRS"
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "diskSizeGB": 100,
+                            "blobUri": "https://esgpoc001storageaccount.blob.core.windows.net/mycontainer/DataDisk.vhd",
+                            "caching": "ReadWrite",
+                            "storageAccountType": "Standard_LRS"
+                        }
+                    ]
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_esg1_name'))]"
+            ]
+        }
+    ]
+}
