@@ -6,91 +6,91 @@
             "value": "85_2736"
         },
         "servers_esg85pocdb_001_name": {
-            "value": "esg85pocdb-001"
+            "value": "esg85pocdb-001-neil"
         },
         "virtualNetworks_ESG1_name": {
-            "value": "ESG1"
+            "value": "neil_ESG1"
         },
         "storageAccounts_esg1_name": {
-            "value": "storageesg1"
+            "value": "esg1"
         },
         "publicIPAddresses_lbip_name": {
             "value": "lbip"
         },
         "virtualMachines_SQLWin16_02_name": {
-            "value": "SQLWin16-02"
+            "value": "neil_SQLWin16-02"
         },
         "virtualMachines_ESG_2376_001_name": {
-            "value": "ESG-2376-001"
+            "value": "neil_ESG-2376-001"
         },
         "virtualMachines_ESG_2376_002_name": {
-            "value": "ESG-2376-002"
+            "value": "neil_ESG-2376-002"
         },
         "networkInterfaces_Pinterface_name": {
-            "value": "Pinterface"
+            "value": "neil_Pinterface"
         },
         "loadBalancers_esgLoadBalancer_name": {
-            "value": "esgLoadBalancer"
+            "value": "neil_esgLoadBalancer"
         },
         "networkSecurityGroups_ESG1nsg_name": {
-            "value": "ESG1nsg"
+            "value": "neil_ESG1nsg"
         },
         "networkSecurityGroups_ESG2nsg_name": {
-            "value": "ESG2nsg"
+            "value": "neil_ESG2nsg"
         },
         "virtualMachines_Win2016_85_001_name": {
-            "value": "Win2016-85-001"
+            "value": "neil_Win2016-85-001"
         },
         "networkInterfaces_esg_2376_00186_name": {
-            "value": "nic_esg-2376-00186"
+            "value": "neil_nic_esg-2376-00186"
         },
         "networkInterfaces_Pinterface_002_name": {
-            "value": "Pinterface-002"
+            "value": "neil_Pinterface-002"
         },
         "networkInterfaces_sqlwin16_02812_name": {
-            "value": "sqlwin16-02812"
+            "value": "neil_sqlwin16-02812"
         },
         "networkInterfaces_esg_2376_002907_name": {
-            "value": "nic_esg-2376-002907"
+            "value": "neil_nic_esg-2376-002907"
         },
         "publicIPAddresses_ESG_2376_001_ip_name": {
-            "value": "ESG-2376-001-ip"
+            "value": "neil_ESG-2376-001-ip"
         },
         "publicIPAddresses_ESG_2376_002_ip_name": {
-            "value": "ESG-2376-002-ip"
+            "value": "neil_ESG-2376-002-ip"
         },
         "networkInterfaces_win2016_85_001713_name": {
-            "value": "nic_win2016-85-001713"
+            "value": "neil_nic_win2016-85-001713"
         },
         "publicIPAddresses_Win2016_85_001_ip_name": {
-            "value": "Win2016-85-001-ip"
+            "value": "neil_Win2016-85-001-ip"
         },
         "databases_master_name": {
             "value": "master"
         },
         "availabilitySets_ESG1AvailabilitySet_name": {
-            "value": "ESG1AvailabilitySet"
+            "value": "neil_ESG1AvailabilitySet"
         },
         "firewallRules_Tom_name": {
             "value": "Tom"
         },
         "publicIPAddresses_esg1gatewaypublicIP_name": {
-            "value": "esg1gatewaypublicIP"
+            "value": "neil_esg1gatewaypublicIP"
         },
         "databases_dbForPOC_name": {
-            "value": "dbForPOC"
+            "value": "neil_dbForPOC"
         },
         "virtualNetworkGateways_VNetGatewayESG1_name": {
-            "value": "VNetGatewayESG1"
+            "value": "VNetGatewayESG1_neil"
         },
         "firewallRules_Tanya_name": {
             "value": "Tanya"
         },
         "subnets_ESG1Subnet_name": {
-            "value": "ESG1Subnet"
+            "value": "neil_ESG1Subnet"
         },
         "subnets_ESG2Subnet_name": {
-            "value": "ESG2Subnet"
+            "value": "neil_ESG2Subnet"
         },
         "subnets_GatewaySubnet_name": {
             "value": "GatewaySubnet"
