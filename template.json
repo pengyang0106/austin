@@ -7,7 +7,7 @@
             "type": "String"
         },
         "servers_esg85pocdb_001_name": {
-            "defaultValue": "esg85pocdb-001",
+            "defaultValue": "neil_esg85pocdb-001",
             "type": "String"
         },
         "virtualNetworks_ESG1_name": {
@@ -138,7 +138,7 @@
             "defaultValue": "SMTP",
             "type": "String"
         },
-        "disks_SQLWin16_02_disk2_b3efc19846b44dd6a5ad4025a4767c42_name": {
+        "disks_SQLWin16_02_disk2_name": {
             "defaultValue": "SQLWin16-02_disk2_b3efc19846b44dd6a5ad4025a4767c42",
             "type": "String"
         },
@@ -154,7 +154,7 @@
             "defaultValue": "ESG-2376-001_disk1_7cc60dd904c4426b832fad994c89226b",
             "type": "String"
         },
-        "disks_ESG_2376_001_disk2__name": {
+        "disks_ESG_2376_001_disk2_name": {
             "defaultValue": "ESG-2376-001_disk2_8f96e8f5d9e248a0a719248bbaba60b5",
             "type": "String"
         },
@@ -162,7 +162,7 @@
             "defaultValue": "ESG-2376-002_disk1_48fc626f86374cc393cf70a3d001baa7",
             "type": "String"
         },
-        "disks_ESdisks_ESG_2376_002_disk2_name": {
+        "disks_ESG_2376_002_disk2_name": {
             "defaultValue": "ESG-2376-002_disk2_be29eb694c8445a8b9e1de420baa8fcc",
             "type": "String"
         },
@@ -242,7 +242,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/ESG-2376-001_disk2_8f96e8f5d9e248a0a719248bbaba60b5'.",
             "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_ESG_2376_001_disk2__name')]",
+            "name": "[parameters('disks_ESG_2376_001_disk2_name')]",
             "apiVersion": "2016-04-30-preview",
             "location": "centralus",
             "scale": null,
@@ -277,7 +277,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/ESG-2376-002_disk2_be29eb694c8445a8b9e1de420baa8fcc'.",
             "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_ESdisks_ESG_2376_002_disk2_name')]",
+            "name": "[parameters('disks_ESG_2376_002_disk2_name')]",
             "apiVersion": "2016-04-30-preview",
             "location": "centralus",
             "scale": null,
@@ -294,7 +294,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/SQLWin16-02_disk2_b3efc19846b44dd6a5ad4025a4767c42'.",
             "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_SQLWin16_02_disk2_b3efc19846b44dd6a5ad4025a4767c42_name')]",
+            "name": "[parameters('disks_SQLWin16_02_disk2_name')]",
             "apiVersion": "2016-04-30-preview",
             "location": "centralus",
             "scale": null,
@@ -417,7 +417,7 @@
                             "caching": "ReadWrite",
                             "managedDisk": {
                                 "storageAccountType": "Standard_LRS",
-                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk2__name'))]"
+                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk2_name'))]"
                             },
                             "diskSizeGB": 100
                         }
@@ -457,7 +457,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]",
                 "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk1_name'))]",
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk2__name'))]"
+                "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk2_name'))]"
             ]
         },
         {
@@ -498,7 +498,7 @@
                             "caching": "ReadWrite",
                             "managedDisk": {
                                 "storageAccountType": "Standard_LRS",
-                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_ESdisks_ESG_2376_002_disk2_name'))]"
+                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_002_disk2_name'))]"
                             },
                             "diskSizeGB": 100
                         }
@@ -538,7 +538,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]",
                 "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_002_disk1_name'))]",
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_ESdisks_ESG_2376_002_disk2_name'))]"
+                "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_002_disk2_name'))]"
             ]
         },
         {
@@ -578,7 +578,7 @@
                             "caching": "ReadOnly",
                             "managedDisk": {
                                 "storageAccountType": "Standard_LRS",
-                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_disk2_b3efc19846b44dd6a5ad4025a4767c42_name'))]"
+                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_disk2_name'))]"
                             },
                             "diskSizeGB": 1023
                         }
@@ -609,7 +609,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_OsDisk_1_name'))]",
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_disk2_b3efc19846b44dd6a5ad4025a4767c42_name'))]"
+                "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_disk2_name'))]"
             ]
         },
         {
@@ -668,7 +668,7 @@
                 "licenseType": "Windows_Server"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_Win2016_85_001_OsDisk_1_name'))]",
+                "[resourceId('Microsoft.Compute/disks', parameters('disks_Win2016_85_001_OsDisk_1_name'))]"
             ]
         },
         {

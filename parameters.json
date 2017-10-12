@@ -104,8 +104,8 @@
         "securityRules_SMTP_name": {
             "value": "SMTP"
         },
-        "disks_SQLWin16_02_disk2_b3efc19846b44dd6a5ad4025a4767c42_name": {
-            "value": "[concat('disk_SQLWin16-02_disk2_', uniqueString(resourceGroup().id))]"
+        "disks_SQLWin16_02_disk2_name": {
+            "value": "disk_SQLWin16-02_disk2_neil10122017_1202"
         },
         "securityRules_SMTPoutbound_name": {
             "value": "SMTPoutbound"
@@ -114,22 +114,22 @@
             "value": "AllowAllWindowsAzureIps"
         },
         "disks_ESG_2376_001_disk1_name": {
-            "value": "[concat('ESG-2376-001_disk1_', uniqueString(resourceGroup().id))]"
+            "value": "ESG-2376-001_disk1_neil10122017_1202"
         },
-        "disks_ESG_2376_001_disk2__name": {
-            "value": "[concat('ESG-2376-001_disk2_', uniqueString(resourceGroup().id))]"
+        "disks_ESG_2376_001_disk2_name": {
+            "value": "ESG-2376-001_disk2_neil10122017_1202"
         },
         "disks_ESG_2376_002_disk1_name": {
-            "value": "[concat('ESG-2376-002_disk1_', uniqueString(resourceGroup().id))]"
+            "value": "ESG-2376-002_disk1_neil10122017_1202"
         },
-        "disks_ESG_2376_002_disk2_be29eb694c8445a8b9e1de420baa8fcc_name": {
-            "value": "[concat('ESG-2376-002_disk2_', uniqueString(resourceGroup().id))]"
+        "disks_ESG_2376_002_disk2_name": {
+            "value": "ESG-2376-002_disk2_neil10122017_1202"
         },
         "disks_SQLWin16_02_OsDisk_1_name": {
-            "value": "[concat(SQLWin16-02_OsDisk_1_', uniqueString(resourceGroup().id))]"
+            "value": "SQLWin16-02_OsDisk_1_neil10122017_1202"
         },
         "disks_Win2016_85_001_OsDisk_1_name": {
-            "value": "[concat('Win2016-85-001_OsDisk_1_', uniqueString(resourceGroup().id))]"
+            "value": "Win2016-85-001_OsDisk_1_neil10122017_1202"
         },
         "disks_ESG_2376_001_disk1_sourceUri": {
             "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_mne5coyni5c"
