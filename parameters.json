@@ -1,0 +1,147 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "images_85_2376_name": {
+            "value": "neil_85_2736"
+        },
+        "servers_esg85pocdb_001_name": {
+            "value": "neil_esg85pocdb-001"
+        },
+        "virtualNetworks_ESG1_name": {
+            "value": "neil_ESG1"
+        },
+        "storageAccounts_esg1_name": {
+            "value": "neilstorageesg1"
+        },
+        "publicIPAddresses_lbip_name": {
+            "value": "neil_lbip"
+        },
+        "virtualMachines_SQLWin16_02_name": {
+            "value": "neil_SQLWin16-02"
+        },
+        "virtualMachines_ESG_2376_001_name": {
+            "value": "neil_vm_ESG-2376-001"
+        },
+        "virtualMachines_ESG_2376_002_name": {
+            "value": "neil_vm_ESG-2376-002"
+        },
+        "networkInterfaces_Pinterface_name": {
+            "value": "neil_Pinterface"
+        },
+        "loadBalancers_esgLoadBalancer_name": {
+            "value": "neil_esgLoadBalancer"
+        },
+        "networkSecurityGroups_ESG1nsg_name": {
+            "value": "neil_ESG1nsg"
+        },
+        "networkSecurityGroups_ESG2nsg_name": {
+            "value": "neil_ESG2nsg"
+        },
+        "virtualMachines_Win2016_85_001_name": {
+            "value": "neil_vm_Win2016-85-001"
+        },
+        "networkInterfaces_esg_2376_00186_name": {
+            "value": "neil_nic_esg-2376-00186"
+        },
+        "networkInterfaces_Pinterface_002_name": {
+            "value": "neil_Pinterface-002"
+        },
+        "networkInterfaces_sqlwin16_02812_name": {
+            "value": "neil_sqlwin16-02812"
+        },
+        "networkInterfaces_esg_2376_002907_name": {
+            "value": "neil_nic_esg-2376-002907"
+        },
+        "publicIPAddresses_ESG_2376_001_ip_name": {
+            "value": "neil_ESG-2376-001-ip"
+        },
+        "publicIPAddresses_ESG_2376_002_ip_name": {
+            "value": "neil_ESG-2376-002-ip"
+        },
+        "networkInterfaces_win2016_85_001713_name": {
+            "value": "neil_nic_win2016-85-001713"
+        },
+        "publicIPAddresses_Win2016_85_001_ip_name": {
+            "value": "neil_Win2016-85-001-ip"
+        },
+        "databases_master_name": {
+            "value": "master"
+        },
+        "availabilitySets_ESG1AvailabilitySet_name": {
+            "value": "neil_ESG1AvailabilitySet"
+        },
+        "firewallRules_Tom_name": {
+            "value": "neil_Tom"
+        },
+        "publicIPAddresses_esg1gatewaypublicIP_name": {
+            "value": "neil_esg1gatewaypublicIP"
+        },
+        "databases_dbForPOC_name": {
+            "value": "neil_dbForPOC"
+        },
+        "virtualNetworkGateways_VNetGatewayESG1_name": {
+            "value": "neil_VNetGatewayESG1"
+        },
+        "firewallRules_Tanya_name": {
+            "value": "Tanya"
+        },
+        "subnets_ESG1Subnet_name": {
+            "value": "neil_ESG1Subnet"
+        },
+        "subnets_ESG2Subnet_name": {
+            "value": "neil_ESG2Subnet"
+        },
+        "subnets_GatewaySubnet_name": {
+            "value": "neil_GatewaySubnet"
+        },
+        "securityRules_SSH_name": {
+            "value": "SSH"
+        },
+        "securityRules_FTP_name": {
+            "value": "FTP"
+        },
+        "securityRules_SMTP_name": {
+            "value": "SMTP"
+        },
+        "disks_SQLWin16_02_disk2_b3efc19846b44dd6a5ad4025a4767c42_name": {
+            "value": "neil_disk_SQLWin16-02_disk2_b3efc19846b44dd6a5ad4025a4767c42"
+        },
+        "securityRules_SMTPoutbound_name": {
+            "value": "SMTPoutbound"
+        },
+        "firewallRules_AllowAllWindowsAzureIps_name": {
+            "value": "AllowAllWindowsAzureIps"
+        },
+        "disks_ESG_2376_001_disk1_7cc60dd904c4426b832fad994c89226b_name": {
+            "value": "neil_ESG-2376-001_disk1_7cc60dd904c4426b832fad994c89226b"
+        },
+        "disks_ESG_2376_001_disk2_8f96e8f5d9e248a0a719248bbaba60b5_name": {
+            "value": "neil_ESG-2376-001_disk2_8f96e8f5d9e248a0a719248bbaba60b5"
+        },
+        "disks_ESG_2376_002_disk1_48fc626f86374cc393cf70a3d001baa7_name": {
+            "value": "neil_ESG-2376-002_disk1_48fc626f86374cc393cf70a3d001baa7"
+        },
+        "disks_ESG_2376_002_disk2_be29eb694c8445a8b9e1de420baa8fcc_name": {
+            "value": "neil_ESG-2376-002_disk2_be29eb694c8445a8b9e1de420baa8fcc"
+        },
+        "disks_SQLWin16_02_OsDisk_1_955a04b26b1a430a9272aae1036c6274_name": {
+            "value": "neil_SQLWin16-02_OsDisk_1_955a04b26b1a430a9272aae1036c6274"
+        },
+        "disks_Win2016_85_001_OsDisk_1_f7ea8e0e7d6f491fb4ad1d50e86293ba_name": {
+            "value": "neil_Win2016-85-001_OsDisk_1_f7ea8e0e7d6f491fb4ad1d50e86293ba"
+        },
+        "disks_ESG_2376_001_disk1_7cc60dd904c4426b832fad994c89226b_sourceUri": {
+            "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_mne5coyni5c"
+        },
+        "disks_ESG_2376_001_disk2_8f96e8f5d9e248a0a719248bbaba60b5_sourceUri": {
+            "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_pie4tdiujfh" 
+        },
+        "disks_ESG_2376_002_disk1_48fc626f86374cc393cf70a3d001baa7_sourceUri": {
+            "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_mne5coyni5c" 
+        },
+        "disks_ESG_2376_002_disk2_be29eb694c8445a8b9e1de420baa8fcc_sourceUri": {
+            "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_pie4tdiujfh"
+        }
+    }
+}
