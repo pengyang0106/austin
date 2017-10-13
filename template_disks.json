@@ -7,7 +7,7 @@
             "type": "String"
         },
         "storageAccounts_esg1_name": {
-            "defaultValue": "esg1",
+            "defaultValue": "emaildev",
             "type": "String"
         }
 
@@ -35,16 +35,13 @@
                         {
                             "lun": 0,
                             "diskSizeGB": 100,
-                            "blobUri": "https://esgpoc001storageaccount.blob.core.windows.net/mycontainer/DataDisk.vhd",
+                            "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/DataDisk.vhd'))]",
                             "caching": "ReadWrite",
                             "storageAccountType": "Standard_LRS"
                         }
                     ]
                 }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_esg1_name'))]"
-            ]
+            }
         }
     ]
 }

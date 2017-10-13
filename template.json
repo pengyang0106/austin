@@ -7,7 +7,7 @@
             "type": "String"
         },
         "servers_esg85pocdb_001_name": {
-            "defaultValue": "neil_esg85pocdb-001",
+            "defaultValue": "esg85pocdb-001-neil",
             "type": "String"
         },
         "virtualNetworks_ESG1_name": {
@@ -15,7 +15,7 @@
             "type": "String"
         },
         "storageAccounts_esg1_name": {
-            "defaultValue": "esg1",
+            "defaultValue": "emaildev",
             "type": "String"
         },
         "publicIPAddresses_lbip_name": {
@@ -173,22 +173,6 @@
         "disks_Win2016_85_001_OsDisk_1_name": {
             "defaultValue": "Win2016-85-001_OsDisk_1_f7ea8e0e7d6f491fb4ad1d50e86293ba",
             "type": "String"
-        },
-        "disks_ESG_2376_001_disk1_sourceUri": {
-            "defaultValue": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_mne5coyni5c",
-            "type": "String"
-        },
-        "disks_ESG_2376_001_disk2_sourceUri": {
-            "defaultValue": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_pie4tdiujfh",
-            "type": "String"
-        },
-        "disks_ESG_2376_002_disk1_sourceUri": {
-            "defaultValue": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_mne5coyni5c",
-            "type": "String"
-        },
-        "disks_ESG_2376_002_disk2_sourceUri": {
-            "defaultValue": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_pie4tdiujfh",
-            "type": "String"
         }
     },
     "variables": {},
@@ -232,8 +216,7 @@
                 "accountType": "Standard_LRS",
                 "osType": "Linux",
                 "creationData": {
-                    "createOption": "Copy",
-                    "sourceUri": "[parameters('disks_ESG_2376_001_disk1_sourceUri')]"
+                    "createOption": "Empty"
                 },
                 "diskSizeGB": 101
             },
@@ -249,8 +232,7 @@
             "properties": {
                 "accountType": "Standard_LRS",
                 "creationData": {
-                    "createOption": "Copy",
-                    "sourceUri": "[parameters('disks_ESG_2376_001_disk2_sourceUri')]"
+                    "createOption": "Empty"
                 },
                 "diskSizeGB": 100
             },
@@ -267,8 +249,7 @@
                 "accountType": "Standard_LRS",
                 "osType": "Linux",
                 "creationData": {
-                    "createOption": "Copy",
-                    "sourceUri": "[parameters('disks_ESG_2376_002_disk1_sourceUri')]"
+                    "createOption": "Empty"
                 },
                 "diskSizeGB": 101
             },
@@ -284,8 +265,7 @@
             "properties": {
                 "accountType": "Standard_LRS",
                 "creationData": {
-                    "createOption": "Copy",
-                    "sourceUri": "[parameters('disks_ESG_2376_002_disk2_sourceUri')]"
+                    "createOption": "Empty"
                 },
                 "diskSizeGB": 100
             },
@@ -368,17 +348,14 @@
                         {
                             "lun": 0,
                             "diskSizeGB": 100,
-                            "blobUri": "https://esgpoc001storageaccount.blob.core.windows.net/mycontainer/DataDisk.vhd",
+                            "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/DataDisk.vhd'))]",
                             "caching": "ReadWrite",
                             "storageAccountType": "Standard_LRS"
                         }
                     ]
                 }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageAccounts_esg1_name'))]"
-            ]
-        },
+            }
+        },        
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/virtualMachines/ESG-2376-001'.",
             "type": "Microsoft.Compute/virtualMachines",
@@ -397,31 +374,7 @@
                 "storageProfile": {
                     "imageReference": {
                         "id": "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]"
-                    },
-                    "osDisk": {
-                        "osType": "Linux",
-                        "name": "[concat(parameters('virtualMachines_ESG_2376_001_name'),'_disk1_7cc60dd904c4426b832fad994c89226b')]",
-                        "createOption": "FromImage",
-                        "caching": "ReadWrite",
-                        "managedDisk": {
-                            "storageAccountType": "Standard_LRS",
-                            "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk1_name'))]"
-                        },
-                        "diskSizeGB": 101
-                    },
-                    "dataDisks": [
-                        {
-                            "lun": 0,
-                            "name": "[concat(parameters('virtualMachines_ESG_2376_001_name'),'_disk2_8f96e8f5d9e248a0a719248bbaba60b5')]",
-                            "createOption": "FromImage",
-                            "caching": "ReadWrite",
-                            "managedDisk": {
-                                "storageAccountType": "Standard_LRS",
-                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk2_name'))]"
-                            },
-                            "diskSizeGB": 100
-                        }
-                    ]
+                    }
                 },
                 "osProfile": {
                     "computerName": "[parameters('virtualMachines_ESG_2376_001_name')]",
@@ -450,14 +403,12 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "https://esgpocresourcegroup778.blob.core.windows.net/"
+                        "storageUri": "https://emaildevdiag637.blob.core.windows.net/"
                     }
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]",
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk1_name'))]",
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_001_disk2_name'))]"
+                "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]"
             ]
         },
         {
@@ -478,31 +429,7 @@
                 "storageProfile": {
                     "imageReference": {
                         "id": "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]"
-                    },
-                    "osDisk": {
-                        "osType": "Linux",
-                        "name": "[concat(parameters('virtualMachines_ESG_2376_002_name'),'_disk1_48fc626f86374cc393cf70a3d001baa7')]",
-                        "createOption": "FromImage",
-                        "caching": "ReadWrite",
-                        "managedDisk": {
-                            "storageAccountType": "Standard_LRS",
-                            "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_002_disk1_name'))]"
-                        },
-                        "diskSizeGB": 101
-                    },
-                    "dataDisks": [
-                        {
-                            "lun": 0,
-                            "name": "[concat(parameters('virtualMachines_ESG_2376_002_name'),'_disk2_be29eb694c8445a8b9e1de420baa8fcc')]",
-                            "createOption": "FromImage",
-                            "caching": "ReadWrite",
-                            "managedDisk": {
-                                "storageAccountType": "Standard_LRS",
-                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_002_disk2_name'))]"
-                            },
-                            "diskSizeGB": 100
-                        }
-                    ]
+                    }
                 },
                 "osProfile": {
                     "computerName": "[parameters('virtualMachines_ESG_2376_002_name')]",
@@ -531,14 +458,12 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "https://esgpocresourcegroup778.blob.core.windows.net/"
+                        "storageUri": "https://emaildevdiag637.blob.core.windows.net/"
                     }
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]",
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_002_disk1_name'))]",
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_ESG_2376_002_disk2_name'))]"
+                "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]"            
             ]
         },
         {
@@ -603,7 +528,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "https://esgpocresourcegroup778.blob.core.windows.net/"
+                        "storageUri": "https://emaildevdiag637.blob.core.windows.net/"
                     }
                 }
             },
@@ -662,7 +587,7 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "https://esgpocresourcegroup778.blob.core.windows.net/"
+                        "storageUri": "https://emaildevdiag637.blob.core.windows.net/"
                     }
                 },
                 "licenseType": "Windows_Server"
@@ -1557,31 +1482,6 @@
                 "administratorLogin": "azureuser",
                 "administratorLoginPassword": null,
                 "version": "12.0"
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/esg1/providers/Microsoft.Storage/storageAccounts/esg1'.",
-            "type": "Microsoft.Storage/storageAccounts",
-            "sku": {
-                "name": "Standard_LRS",
-                "tier": "Standard"
-            },
-            "kind": "Storage",
-            "name": "[parameters('storageAccounts_esg1_name')]",
-            "apiVersion": "2016-01-01",
-            "location": "centralus",
-            "tags": {},
-            "scale": null,
-            "properties": {
-                "encryption": {
-                    "keySource": "Microsoft.Storage",
-                    "services": {
-                        "blob": {
-                            "enabled": true
-                        }
-                    }
-                }
             },
             "dependsOn": []
         },

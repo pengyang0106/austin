@@ -12,7 +12,7 @@
             "value": "neil_ESG1"
         },
         "storageAccounts_esg1_name": {
-            "value": "esg1"
+            "value": "emaildev"
         },
         "publicIPAddresses_lbip_name": {
             "value": "lbip"
@@ -130,18 +130,6 @@
         },
         "disks_Win2016_85_001_OsDisk_1_name": {
             "value": "Win2016-85-001_OsDisk_1_neil10122017_1202"
-        },
-        "disks_ESG_2376_001_disk1_sourceUri": {
-            "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_mne5coyni5c"
-        },
-        "disks_ESG_2376_001_disk2_sourceUri": {
-            "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_pie4tdiujfh" 
-        },
-        "disks_ESG_2376_002_disk1_sourceUri": {
-            "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_mne5coyni5c" 
-        },
-        "disks_ESG_2376_002_disk2_sourceUri": {
-            "value": "/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/snapshots/85_2376_pie4tdiujfh"
         }
     }
 }
