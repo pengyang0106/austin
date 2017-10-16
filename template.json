@@ -7,7 +7,7 @@
             "type": "String"
         },
         "servers_esg85pocdb_001_name": {
-            "defaultValue": "esg85pocdb-001-neil",
+            "defaultValue": "esg85pocdb-002",
             "type": "String"
         },
         "virtualNetworks_ESG1_name": {
@@ -408,7 +408,8 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]"
+                "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]",
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]"
             ]
         },
         {
@@ -463,7 +464,8 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]"            
+                "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]",
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]"
             ]
         },
         {
@@ -486,7 +488,7 @@
                     },
                     "osDisk": {
                         "osType": "Windows",
-                        "name": "[concat(parameters('virtualMachines_SQLWin16_02_name'),'_OsDisk_1_955a04b26b1a430a9272aae1036c6274')]",
+                        "name": "[parameters('disks_SQLWin16_02_OsDisk_1_name')]",
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
@@ -498,7 +500,7 @@
                     "dataDisks": [
                         {
                             "lun": 0,
-                            "name": "[concat(parameters('virtualMachines_SQLWin16_02_name'),'_disk2_b3efc19846b44dd6a5ad4025a4767c42')]",
+                            "name": "[parameters('disks_SQLWin16_02_disk2_name')]",
                             "createOption": "Empty",
                             "caching": "ReadOnly",
                             "managedDisk": {

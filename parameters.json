@@ -2,14 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "images_85_2376_name": {
-            "value": "85_2736"
-        },
         "servers_esg85pocdb_001_name": {
-            "value": "esg85pocdb-001-neil"
+            "value": "esg85pocdb-002"
         },
         "virtualNetworks_ESG1_name": {
             "value": "neil_ESG1"
+        },
+        "images_85_2376_name": {
+            "value": "85_2376"
         },
         "storageAccounts_esg1_name": {
             "value": "emaildev"
