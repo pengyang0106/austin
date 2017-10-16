@@ -4,175 +4,155 @@
     "parameters": {
         "images_85_2376_name": {
             "defaultValue": "85_2376",
-            "type": "String"
+            "type": "string"
         },
         "servers_esg85pocdb_001_name": {
             "defaultValue": "esg85pocdb-002",
-            "type": "String"
+            "type": "string"
         },
         "virtualNetworks_ESG1_name": {
             "defaultValue": "ESG1",
-            "type": "String"
+            "type": "string"
         },
         "storageAccounts_esg1_name": {
             "defaultValue": "emaildev",
-            "type": "String"
+            "type": "string"
         },
         "publicIPAddresses_lbip_name": {
             "defaultValue": "lbip",
-            "type": "String"
+            "type": "string"
         },
         "virtualMachines_SQLWin16_02_name": {
             "defaultValue": "SQLWin16-02",
-            "type": "String"
+            "type": "string"
         },
         "virtualMachines_ESG_2376_001_name": {
             "defaultValue": "ESG-2376-001",
-            "type": "String"
+            "type": "string"
         },
         "virtualMachines_ESG_2376_002_name": {
             "defaultValue": "ESG-2376-002",
-            "type": "String"
+            "type": "string"
         },
         "networkInterfaces_Pinterface_name": {
             "defaultValue": "Pinterface",
-            "type": "String"
+            "type": "string"
         },
         "loadBalancers_esgLoadBalancer_name": {
             "defaultValue": "esgLoadBalancer",
-            "type": "String"
+            "type": "string"
         },
         "networkSecurityGroups_ESG1nsg_name": {
             "defaultValue": "ESG1nsg",
-            "type": "String"
+            "type": "string"
         },
         "networkSecurityGroups_ESG2nsg_name": {
             "defaultValue": "ESG2nsg",
-            "type": "String"
+            "type": "string"
         },
         "virtualMachines_Win2016_85_001_name": {
             "defaultValue": "Win2016-85-001",
-            "type": "String"
+            "type": "string"
         },
         "networkInterfaces_esg_2376_00186_name": {
             "defaultValue": "esg-2376-00186",
-            "type": "String"
+            "type": "string"
         },
         "networkInterfaces_Pinterface_002_name": {
             "defaultValue": "Pinterface-002",
-            "type": "String"
+            "type": "string"
         },
         "networkInterfaces_sqlwin16_02812_name": {
             "defaultValue": "sqlwin16-02812",
-            "type": "String"
+            "type": "string"
         },
         "networkInterfaces_esg_2376_002907_name": {
             "defaultValue": "esg-2376-002907",
-            "type": "String"
+            "type": "string"
         },
         "publicIPAddresses_ESG_2376_001_ip_name": {
             "defaultValue": "ESG-2376-001-ip",
-            "type": "String"
+            "type": "string"
         },
         "publicIPAddresses_ESG_2376_002_ip_name": {
             "defaultValue": "ESG-2376-002-ip",
-            "type": "String"
+            "type": "string"
         },
         "networkInterfaces_win2016_85_001713_name": {
             "defaultValue": "win2016-85-001713",
-            "type": "String"
+            "type": "string"
         },
         "publicIPAddresses_Win2016_85_001_ip_name": {
             "defaultValue": "Win2016-85-001-ip",
-            "type": "String"
+            "type": "string"
         },
         "databases_master_name": {
             "defaultValue": "master",
-            "type": "String"
+            "type": "string"
         },
         "availabilitySets_ESG1AvailabilitySet_name": {
             "defaultValue": "ESG1AvailabilitySet",
-            "type": "String"
+            "type": "string"
         },
         "firewallRules_Tom_name": {
             "defaultValue": "Tom",
-            "type": "String"
+            "type": "string"
         },
         "publicIPAddresses_esg1gatewaypublicIP_name": {
             "defaultValue": "esg1gatewaypublicIP",
-            "type": "String"
+            "type": "string"
         },
         "databases_dbForPOC_name": {
             "defaultValue": "dbForPOC",
-            "type": "String"
+            "type": "string"
         },
         "virtualNetworkGateways_VNetGatewayESG1_name": {
             "defaultValue": "VNetGatewayESG1",
-            "type": "String"
+            "type": "string"
         },
         "firewallRules_Tanya_name": {
             "defaultValue": "Tanya",
-            "type": "String"
+            "type": "string"
         },
         "subnets_ESG1Subnet_name": {
             "defaultValue": "ESG1Subnet",
-            "type": "String"
+            "type": "string"
         },
         "subnets_ESG2Subnet_name": {
             "defaultValue": "ESG2Subnet",
-            "type": "String"
+            "type": "string"
         },
         "subnets_GatewaySubnet_name": {
             "defaultValue": "GatewaySubnet",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_SSH_name": {
             "defaultValue": "SSH",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_FTP_name": {
             "defaultValue": "FTP",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_SMTP_name": {
             "defaultValue": "SMTP",
-            "type": "String"
+            "type": "string"
         },
         "disks_SQLWin16_02_disk2_name": {
             "defaultValue": "SQLWin16-02_disk2_b3efc19846b44dd6a5ad4025a4767c42",
-            "type": "String"
+            "type": "string"
         },
         "securityRules_SMTPoutbound_name": {
             "defaultValue": "SMTPoutbound",
-            "type": "String"
+            "type": "string"
         },
         "firewallRules_AllowAllWindowsAzureIps_name": {
             "defaultValue": "AllowAllWindowsAzureIps",
-            "type": "String"
-        },
-        "disks_ESG_2376_001_disk1_name": {
-            "defaultValue": "ESG-2376-001_disk1_7cc60dd904c4426b832fad994c89226b",
-            "type": "String"
-        },
-        "disks_ESG_2376_001_disk2_name": {
-            "defaultValue": "ESG-2376-001_disk2_8f96e8f5d9e248a0a719248bbaba60b5",
-            "type": "String"
-        },
-        "disks_ESG_2376_002_disk1_name": {
-            "defaultValue": "ESG-2376-002_disk1_48fc626f86374cc393cf70a3d001baa7",
-            "type": "String"
-        },
-        "disks_ESG_2376_002_disk2_name": {
-            "defaultValue": "ESG-2376-002_disk2_be29eb694c8445a8b9e1de420baa8fcc",
-            "type": "String"
+            "type": "string"
         },
         "disks_SQLWin16_02_OsDisk_1_name": {
             "defaultValue": "SQLWin16-02_OsDisk_1_955a04b26b1a430a9272aae1036c6274",
-            "type": "String"
-        },
-        "disks_Win2016_85_001_OsDisk_1_name": {
-            "defaultValue": "Win2016-85-001_OsDisk_1_f7ea8e0e7d6f491fb4ad1d50e86293ba",
-            "type": "String"
+            "type": "string"
         }
     },
     "variables": {},
@@ -201,131 +181,7 @@
                 ]
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ESG_2376_001_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ESG_2376_002_name'))]"
             ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/ESG-2376-001_disk1_7cc60dd904c4426b832fad994c89226b'.",
-            "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_ESG_2376_001_disk1_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "osType": "Linux",
-                "creationData": {
-                    "createOption": "Empty"
-                },
-                "diskSizeGB": 101
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/ESG-2376-001_disk2_8f96e8f5d9e248a0a719248bbaba60b5'.",
-            "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_ESG_2376_001_disk2_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "creationData": {
-                    "createOption": "Empty"
-                },
-                "diskSizeGB": 100
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/ESG-2376-002_disk1_48fc626f86374cc393cf70a3d001baa7'.",
-            "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_ESG_2376_002_disk1_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "osType": "Linux",
-                "creationData": {
-                    "createOption": "Empty"
-                },
-                "diskSizeGB": 101
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/ESG-2376-002_disk2_be29eb694c8445a8b9e1de420baa8fcc'.",
-            "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_ESG_2376_002_disk2_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "creationData": {
-                    "createOption": "Empty"
-                },
-                "diskSizeGB": 100
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/SQLWin16-02_disk2_b3efc19846b44dd6a5ad4025a4767c42'.",
-            "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_SQLWin16_02_disk2_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "creationData": {
-                    "createOption": "Empty"
-                },
-                "diskSizeGB": 1023
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/SQLWin16-02_OsDisk_1_955a04b26b1a430a9272aae1036c6274'.",
-            "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_SQLWin16_02_OsDisk_1_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "osType": "Windows",
-                "creationData": {
-                    "createOption": "FromImage",
-                    "imageReference": {
-                        "id": "/Subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/Providers/Microsoft.Compute/Locations/centralus/Publishers/MicrosoftSQLServer/ArtifactTypes/VMImage/Offers/SQL2016SP1-WS2016/Skus/Enterprise/Versions/latest"
-                    }
-                },
-                "diskSizeGB": 127
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/disks/Win2016-85-001_OsDisk_1_f7ea8e0e7d6f491fb4ad1d50e86293ba'.",
-            "type": "Microsoft.Compute/disks",
-            "name": "[parameters('disks_Win2016_85_001_OsDisk_1_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "accountType": "Standard_LRS",
-                "osType": "Windows",
-                "creationData": {
-                    "createOption": "FromImage",
-                    "imageReference": {
-                        "id": "/Subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/Providers/Microsoft.Compute/Locations/centralus/Publishers/MicrosoftWindowsServer/ArtifactTypes/VMImage/Offers/WindowsServer/Skus/2016-Datacenter/Versions/latest"
-                    }
-                },
-                "diskSizeGB": 128
-            },
-            "dependsOn": []
         },
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/images/85_2376'.",
@@ -379,6 +235,7 @@
                 "osProfile": {
                     "computerName": "[parameters('virtualMachines_ESG_2376_001_name')]",
                     "adminUsername": "azureuser",
+                    "adminPassword": "websense#123",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": false
                     },
@@ -409,7 +266,9 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]",
-                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]"
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_esg_2376_00186_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_Pinterface_name'))]"
             ]
         },
         {
@@ -435,6 +294,7 @@
                 "osProfile": {
                     "computerName": "[parameters('virtualMachines_ESG_2376_002_name')]",
                     "adminUsername": "azureuser",
+                    "adminPassword": "websense#123",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": false
                     },
@@ -465,7 +325,9 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/images', parameters('images_85_2376_name'))]",
-                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]"
+                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_esg_2376_002907_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_Pinterface_002_name'))]"
             ]
         },
         {
@@ -492,11 +354,11 @@
                         "createOption": "FromImage",
                         "caching": "ReadWrite",
                         "managedDisk": {
-                            "storageAccountType": "Standard_LRS",
-                            "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_OsDisk_1_name'))]"
+                            "storageAccountType": "Standard_LRS"
                         },
                         "diskSizeGB": 127
                     },
+
                     "dataDisks": [
                         {
                             "lun": 0,
@@ -504,8 +366,7 @@
                             "createOption": "Empty",
                             "caching": "ReadOnly",
                             "managedDisk": {
-                                "storageAccountType": "Standard_LRS",
-                                "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_disk2_name'))]"
+                                "storageAccountType": "Standard_LRS"
                             },
                             "diskSizeGB": 1023
                         }
@@ -514,6 +375,7 @@
                 "osProfile": {
                     "computerName": "[parameters('virtualMachines_SQLWin16_02_name')]",
                     "adminUsername": "azureuser",
+                    "adminPassword": "websense#123",
                     "windowsConfiguration": {
                         "provisionVMAgent": true,
                         "enableAutomaticUpdates": true
@@ -535,8 +397,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_OsDisk_1_name'))]",
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_SQLWin16_02_disk2_name'))]"
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sqlwin16_02812_name'))]"
             ]
         },
         {
@@ -561,18 +422,14 @@
                         "osType": "Windows",
                         "name": "[concat(parameters('virtualMachines_Win2016_85_001_name'),'_OsDisk_1_f7ea8e0e7d6f491fb4ad1d50e86293ba')]",
                         "createOption": "FromImage",
-                        "caching": "ReadWrite",
-                        "managedDisk": {
-                            "storageAccountType": "Standard_LRS",
-                            "id": "[resourceId('Microsoft.Compute/disks', parameters('disks_Win2016_85_001_OsDisk_1_name'))]"
-                        },
-                        "diskSizeGB": 128
+                        "caching": "ReadWrite"
                     },
                     "dataDisks": []
                 },
                 "osProfile": {
                     "computerName": "[parameters('virtualMachines_Win2016_85_001_name')]",
                     "adminUsername": "azureuser",
+                    "adminPassword": "websense#123",
                     "windowsConfiguration": {
                         "provisionVMAgent": true,
                         "enableAutomaticUpdates": true
@@ -595,7 +452,7 @@
                 "licenseType": "Windows_Server"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/disks', parameters('disks_Win2016_85_001_OsDisk_1_name'))]"
+                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_win2016_85_001713_name'))]"
             ]
         },
         {
@@ -700,8 +557,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ESG_2376_001_ip_name'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG1nsg_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ESG_2376_001_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG1nsg_name'))]"
             ]
         },
         {
@@ -752,8 +608,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_ESG_2376_002_ip_name'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG1nsg_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ESG_2376_002_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG1nsg_name'))]"
             ]
         },
         {
@@ -806,8 +661,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]",
                 "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_esgLoadBalancer_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG1nsg_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ESG_2376_001_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG1nsg_name'))]"
             ]
         },
         {
@@ -850,8 +704,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_ESG_2376_002_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]"
             ]
         },
         {
@@ -898,8 +751,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG2Subnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG2nsg_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_SQLWin16_02_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG2nsg_name'))]"
             ]
         },
         {
@@ -950,8 +802,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_Win2016_85_001_ip_name'))]",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG2Subnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG2nsg_name'))]",
-                "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_Win2016_85_001_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG2nsg_name'))]"
             ]
         },
         {
@@ -1458,7 +1309,7 @@
                         }
                     },
                     {
-                        "name": "ESG2Subnet",
+                        "name": "[parameters('subnets_ESG2Subnet_name')]",
                         "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
                         "properties": {
                             "provisioningState": "Succeeded",
@@ -1482,7 +1333,7 @@
             "scale": null,
             "properties": {
                 "administratorLogin": "azureuser",
-                "administratorLoginPassword": null,
+                "administratorLoginPassword": "websense#123",
                 "version": "12.0"
             },
             "dependsOn": []
@@ -1634,13 +1485,11 @@
             "location": "Central US",
             "scale": null,
             "properties": {
-                "databaseId": "c45c7fd3-fd61-47fb-b628-422fbcdfe143",
                 "edition": "Standard",
                 "status": "Online",
                 "serviceLevelObjective": "S3",
                 "collation": "SQL_Latin1_General_CP1_CI_AS",
                 "maxSizeBytes": "107374182400",
-                "creationDate": "2017-10-02T19:32:00.983Z",
                 "currentServiceObjectiveId": "789681b8-ca10-4eb0-bdf2-e0b050601b40",
                 "requestedServiceObjectiveId": "789681b8-ca10-4eb0-bdf2-e0b050601b40",
                 "requestedServiceObjectiveName": "S3",
@@ -1665,13 +1514,11 @@
             "location": "Central US",
             "scale": null,
             "properties": {
-                "databaseId": "28c662de-67e0-4d0d-a59c-ad97e805e45f",
                 "edition": "System",
                 "status": "Online",
                 "serviceLevelObjective": "System2",
                 "collation": "SQL_Latin1_General_CP1_CI_AS",
                 "maxSizeBytes": "32212254720",
-                "creationDate": "2017-10-02T19:31:07.977Z",
                 "currentServiceObjectiveId": "620323bf-2879-4807-b30d-c2e6d7b3b3aa",
                 "requestedServiceObjectiveId": "620323bf-2879-4807-b30d-c2e6d7b3b3aa",
                 "requestedServiceObjectiveName": "System2",
@@ -1692,7 +1539,7 @@
             "type": "Microsoft.Sql/servers/firewallRules",
             "kind": "v12.0",
             "name": "[concat(parameters('servers_esg85pocdb_001_name'), '/', parameters('firewallRules_AllowAllWindowsAzureIps_name'))]",
-            "apiVersion": "2014-04-01-preview",
+            "apiVersion": "2014-04-01",
             "location": "Central US",
             "scale": null,
             "properties": {
@@ -1708,7 +1555,7 @@
             "type": "Microsoft.Sql/servers/firewallRules",
             "kind": "v12.0",
             "name": "[concat(parameters('servers_esg85pocdb_001_name'), '/', parameters('firewallRules_Tanya_name'))]",
-            "apiVersion": "2014-04-01-preview",
+            "apiVersion": "2014-04-01",
             "location": "Central US",
             "scale": null,
             "properties": {
@@ -1724,7 +1571,7 @@
             "type": "Microsoft.Sql/servers/firewallRules",
             "kind": "v12.0",
             "name": "[concat(parameters('servers_esg85pocdb_001_name'), '/', parameters('firewallRules_Tom_name'))]",
-            "apiVersion": "2014-04-01-preview",
+            "apiVersion": "2014-04-01",
             "location": "Central US",
             "scale": null,
             "properties": {
