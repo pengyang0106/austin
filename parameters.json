@@ -112,24 +112,6 @@
         },
         "firewallRules_AllowAllWindowsAzureIps_name": {
             "value": "AllowAllWindowsAzureIps"
-        },
-        "disks_ESG_2376_001_disk1_name": {
-            "value": "ESG-2376-001_disk1_neil10122017_1202"
-        },
-        "disks_ESG_2376_001_disk2_name": {
-            "value": "ESG-2376-001_disk2_neil10122017_1202"
-        },
-        "disks_ESG_2376_002_disk1_name": {
-            "value": "ESG-2376-002_disk1_neil10122017_1202"
-        },
-        "disks_ESG_2376_002_disk2_name": {
-            "value": "ESG-2376-002_disk2_neil10122017_1202"
-        },
-        "disks_SQLWin16_02_OsDisk_1_name": {
-            "value": "SQLWin16-02_OsDisk_1_neil10122017_1202"
-        },
-        "disks_Win2016_85_001_OsDisk_1_name": {
-            "value": "Win2016-85-001_OsDisk_1_neil10122017_1202"
         }
     }
 }
