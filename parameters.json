@@ -2,13 +2,10 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "servers_esg85pocdb_001_name": {
-            "value": "esg85pocdb-002"
-        },
         "virtualNetworks_ESG1_name": {
             "value": "neil-ESG1"
         },
-        "images_85_2376_name": {
+        "esg_image_name": {
             "value": "85_2376"
         },
         "storageAccounts_esg1_name": {
@@ -65,26 +62,14 @@
         "publicIPAddresses_Win2016_85_001_ip_name": {
             "value": "neil-Win2016-85-001-ip"
         },
-        "databases_master_name": {
-            "value": "master"
-        },
         "availabilitySets_ESG1AvailabilitySet_name": {
             "value": "neil-ESG1AvailabilitySet"
-        },
-        "firewallRules_Tom_name": {
-            "value": "Tom"
         },
         "publicIPAddresses_esg1gatewaypublicIP_name": {
             "value": "neil-esg1gatewaypublicIP"
         },
-        "databases_dbForPOC_name": {
-            "value": "neil-dbForPOC"
-        },
         "virtualNetworkGateways_VNetGatewayESG1_name": {
             "value": "VNetGatewayESG1_neil"
-        },
-        "firewallRules_Tanya_name": {
-            "value": "Tanya"
         },
         "subnets_ESG1Subnet_name": {
             "value": "neil-ESG1Subnet"
@@ -109,9 +94,6 @@
         },
         "securityRules_SMTPoutbound_name": {
             "value": "SMTPoutbound"
-        },
-        "firewallRules_AllowAllWindowsAzureIps_name": {
-            "value": "AllowAllWindowsAzureIps"
         }
     }
 }

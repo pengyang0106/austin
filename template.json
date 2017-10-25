@@ -6,10 +6,6 @@
             "defaultValue": "85_2376",
             "type": "string"
         },
-        "hosted_sqlserver_name": {
-            "defaultValue": "esg85pocdb-002",
-            "type": "string"
-        },
         "virtualNetworks_ESG1_name": {
             "defaultValue": "ESG1",
             "type": "string"
@@ -86,32 +82,16 @@
             "defaultValue": "Win2016-85-001-ip",
             "type": "string"
         },
-        "databases_master_name": {
-            "defaultValue": "master",
-            "type": "string"
-        },
         "availabilitySets_ESG1AvailabilitySet_name": {
             "defaultValue": "ESG1AvailabilitySet",
-            "type": "string"
-        },
-        "firewallRules_Tom_name": {
-            "defaultValue": "Tom",
             "type": "string"
         },
         "publicIPAddresses_esg1gatewaypublicIP_name": {
             "defaultValue": "esg1gatewaypublicIP",
             "type": "string"
         },
-        "databases_dbForPOC_name": {
-            "defaultValue": "dbForPOC",
-            "type": "string"
-        },
         "virtualNetworkGateways_VNetGatewayESG1_name": {
             "defaultValue": "VNetGatewayESG1",
-            "type": "string"
-        },
-        "firewallRules_Tanya_name": {
-            "defaultValue": "Tanya",
             "type": "string"
         },
         "subnets_ESG1Subnet_name": {
@@ -144,10 +124,6 @@
         },
         "securityRules_SMTPoutbound_name": {
             "defaultValue": "SMTPoutbound",
-            "type": "string"
-        },
-        "firewallRules_AllowAllWindowsAzureIps_name": {
-            "defaultValue": "AllowAllWindowsAzureIps",
             "type": "string"
         },
         "disks_SQLWin16_02_OsDisk_1_name": {
@@ -1324,21 +1300,6 @@
             ]
         },
         {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Sql/servers/esg85pocdb-001'.",
-            "type": "Microsoft.Sql/servers",
-            "kind": "v12.0",
-            "name": "[parameters('hosted_sqlserver_name')]",
-            "apiVersion": "2014-04-01-preview",
-            "location": "Central US",
-            "scale": null,
-            "properties": {
-                "administratorLogin": "azureuser",
-                "administratorLoginPassword": "websense#123",
-                "version": "12.0"
-            },
-            "dependsOn": []
-        },
-        {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/networkSecurityGroups/ESG1nsg/securityRules/SMTP'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
             "name": "[concat(parameters('networkSecurityGroups_ESG1nsg_name'), '/', parameters('securityRules_SMTP_name'))]",
@@ -1474,112 +1435,6 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_ESG1_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Sql/servers/esg85pocdb-001/databases/dbForPOC'.",
-            "type": "Microsoft.Sql/servers/databases",
-            "kind": "v12.0,user",
-            "name": "[concat(parameters('hosted_sqlserver_name'), '/', parameters('databases_dbForPOC_name'))]",
-            "apiVersion": "2014-04-01-preview",
-            "location": "Central US",
-            "scale": null,
-            "properties": {
-                "edition": "Standard",
-                "status": "Online",
-                "serviceLevelObjective": "S3",
-                "collation": "SQL_Latin1_General_CP1_CI_AS",
-                "maxSizeBytes": "107374182400",
-                "currentServiceObjectiveId": "789681b8-ca10-4eb0-bdf2-e0b050601b40",
-                "requestedServiceObjectiveId": "789681b8-ca10-4eb0-bdf2-e0b050601b40",
-                "requestedServiceObjectiveName": "S3",
-                "sampleName": null,
-                "defaultSecondaryLocation": "East US 2",
-                "earliestRestoreDate": "2017-10-02T19:42:35.61Z",
-                "elasticPoolName": null,
-                "containmentState": 2,
-                "readScale": "Disabled",
-                "failoverGroupId": null
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('hosted_sqlserver_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Sql/servers/esg85pocdb-001/databases/master'.",
-            "type": "Microsoft.Sql/servers/databases",
-            "kind": "v12.0,system",
-            "name": "[concat(parameters('hosted_sqlserver_name'), '/', parameters('databases_master_name'))]",
-            "apiVersion": "2014-04-01-preview",
-            "location": "Central US",
-            "scale": null,
-            "properties": {
-                "edition": "System",
-                "status": "Online",
-                "serviceLevelObjective": "System2",
-                "collation": "SQL_Latin1_General_CP1_CI_AS",
-                "maxSizeBytes": "32212254720",
-                "currentServiceObjectiveId": "620323bf-2879-4807-b30d-c2e6d7b3b3aa",
-                "requestedServiceObjectiveId": "620323bf-2879-4807-b30d-c2e6d7b3b3aa",
-                "requestedServiceObjectiveName": "System2",
-                "sampleName": null,
-                "defaultSecondaryLocation": "East US 2",
-                "earliestRestoreDate": null,
-                "elasticPoolName": null,
-                "containmentState": 2,
-                "readScale": "Disabled",
-                "failoverGroupId": null
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('hosted_sqlserver_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Sql/servers/esg85pocdb-001/firewallRules/AllowAllWindowsAzureIps'.",
-            "type": "Microsoft.Sql/servers/firewallRules",
-            "kind": "v12.0",
-            "name": "[concat(parameters('hosted_sqlserver_name'), '/', parameters('firewallRules_AllowAllWindowsAzureIps_name'))]",
-            "apiVersion": "2014-04-01",
-            "location": "Central US",
-            "scale": null,
-            "properties": {
-                "startIpAddress": "0.0.0.0",
-                "endIpAddress": "0.0.0.0"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('hosted_sqlserver_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Sql/servers/esg85pocdb-001/firewallRules/Tanya'.",
-            "type": "Microsoft.Sql/servers/firewallRules",
-            "kind": "v12.0",
-            "name": "[concat(parameters('hosted_sqlserver_name'), '/', parameters('firewallRules_Tanya_name'))]",
-            "apiVersion": "2014-04-01",
-            "location": "Central US",
-            "scale": null,
-            "properties": {
-                "startIpAddress": "207.191.31.202",
-                "endIpAddress": "207.191.31.202"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('hosted_sqlserver_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Sql/servers/esg85pocdb-001/firewallRules/Tom'.",
-            "type": "Microsoft.Sql/servers/firewallRules",
-            "kind": "v12.0",
-            "name": "[concat(parameters('hosted_sqlserver_name'), '/', parameters('firewallRules_Tom_name'))]",
-            "apiVersion": "2014-04-01",
-            "location": "Central US",
-            "scale": null,
-            "properties": {
-                "startIpAddress": "69.172.201.153",
-                "endIpAddress": "69.172.201.153"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Sql/servers', parameters('hosted_sqlserver_name'))]"
             ]
         }
     ]
