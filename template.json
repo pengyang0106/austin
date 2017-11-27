@@ -18,10 +18,6 @@
             "defaultValue": "lbip",
             "type": "string"
         },
-        "virtualMachines_SQLWin16_02_name": {
-            "defaultValue": "SQLWin16-02",
-            "type": "string"
-        },
         "virtualMachines_ESG_2376_001_name": {
             "defaultValue": "ESG-2376-001",
             "type": "string"
@@ -58,10 +54,6 @@
             "defaultValue": "Pinterface-002",
             "type": "string"
         },
-        "networkInterfaces_sqlwin16_02812_name": {
-            "defaultValue": "sqlwin16-02812",
-            "type": "string"
-        },
         "networkInterfaces_esg_2376_002907_name": {
             "defaultValue": "esg-2376-002907",
             "type": "string"
@@ -72,14 +64,6 @@
         },
         "publicIPAddresses_ESG_2376_002_ip_name": {
             "defaultValue": "ESG-2376-002-ip",
-            "type": "string"
-        },
-        "networkInterfaces_win2016_85_001713_name": {
-            "defaultValue": "win2016-85-001713",
-            "type": "string"
-        },
-        "publicIPAddresses_Win2016_85_001_ip_name": {
-            "defaultValue": "Win2016-85-001-ip",
             "type": "string"
         },
         "availabilitySets_ESG1AvailabilitySet_name": {
@@ -118,16 +102,8 @@
             "defaultValue": "SMTP",
             "type": "string"
         },
-        "disks_SQLWin16_02_disk2_name": {
-            "defaultValue": "SQLWin16-02_disk2_b3efc19846b44dd6a5ad4025a4767c42",
-            "type": "string"
-        },
         "securityRules_SMTPoutbound_name": {
             "defaultValue": "SMTPoutbound",
-            "type": "string"
-        },
-        "disks_SQLWin16_02_OsDisk_1_name": {
-            "defaultValue": "SQLWin16-02_OsDisk_1_955a04b26b1a430a9272aae1036c6274",
             "type": "string"
         }
     },
@@ -304,131 +280,6 @@
                 "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_esg_2376_002907_name'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_Pinterface_002_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/virtualMachines/SQLWin16-02'.",
-            "type": "Microsoft.Compute/virtualMachines",
-            "name": "[parameters('virtualMachines_SQLWin16_02_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "hardwareProfile": {
-                    "vmSize": "Standard_A3"
-                },
-                "storageProfile": {
-                    "imageReference": {
-                        "publisher": "MicrosoftSQLServer",
-                        "offer": "SQL2016SP1-WS2016",
-                        "sku": "Enterprise",
-                        "version": "latest"
-                    },
-                    "osDisk": {
-                        "osType": "Windows",
-                        "name": "[parameters('disks_SQLWin16_02_OsDisk_1_name')]",
-                        "createOption": "FromImage",
-                        "caching": "ReadWrite",
-                        "managedDisk": {
-                            "storageAccountType": "Standard_LRS"
-                        },
-                        "diskSizeGB": 127
-                    },
-
-                    "dataDisks": [
-                        {
-                            "lun": 0,
-                            "name": "[parameters('disks_SQLWin16_02_disk2_name')]",
-                            "createOption": "Empty",
-                            "caching": "ReadOnly",
-                            "managedDisk": {
-                                "storageAccountType": "Standard_LRS"
-                            },
-                            "diskSizeGB": 1023
-                        }
-                    ]
-                },
-                "osProfile": {
-                    "computerName": "[parameters('virtualMachines_SQLWin16_02_name')]",
-                    "adminUsername": "azureuser",
-                    "adminPassword": "websense#123",
-                    "windowsConfiguration": {
-                        "provisionVMAgent": true,
-                        "enableAutomaticUpdates": true
-                    },
-                    "secrets": []
-                },
-                "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sqlwin16_02812_name'))]"
-                        }
-                    ]
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": true,
-                        "storageUri": "https://emaildevdiag637.blob.core.windows.net/"
-                    }
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_sqlwin16_02812_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/virtualMachines/Win2016-85-001'.",
-            "type": "Microsoft.Compute/virtualMachines",
-            "name": "[parameters('virtualMachines_Win2016_85_001_name')]",
-            "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "hardwareProfile": {
-                    "vmSize": "Standard_A4"
-                },
-                "storageProfile": {
-                    "imageReference": {
-                        "publisher": "MicrosoftWindowsServer",
-                        "offer": "WindowsServer",
-                        "sku": "2016-Datacenter",
-                        "version": "latest"
-                    },
-                    "osDisk": {
-                        "osType": "Windows",
-                        "name": "[concat(parameters('virtualMachines_Win2016_85_001_name'),'_OsDisk_1_f7ea8e0e7d6f491fb4ad1d50e86293ba')]",
-                        "createOption": "FromImage",
-                        "caching": "ReadWrite"
-                    },
-                    "dataDisks": []
-                },
-                "osProfile": {
-                    "computerName": "[parameters('virtualMachines_Win2016_85_001_name')]",
-                    "adminUsername": "azureuser",
-                    "adminPassword": "websense#123",
-                    "windowsConfiguration": {
-                        "provisionVMAgent": true,
-                        "enableAutomaticUpdates": true
-                    },
-                    "secrets": []
-                },
-                "networkProfile": {
-                    "networkInterfaces": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_win2016_85_001713_name'))]"
-                        }
-                    ]
-                },
-                "diagnosticsProfile": {
-                    "bootDiagnostics": {
-                        "enabled": true,
-                        "storageUri": "https://emaildevdiag637.blob.core.windows.net/"
-                    }
-                },
-                "licenseType": "Windows_Server"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/networkInterfaces', parameters('networkInterfaces_win2016_85_001713_name'))]"
             ]
         },
         {
@@ -681,104 +532,6 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/networkInterfaces/sqlwin16-02812'.",
-            "type": "Microsoft.Network/networkInterfaces",
-            "name": "[parameters('networkInterfaces_sqlwin16_02812_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "f2828992-90b3-450c-a9cd-efa26dc07305",
-                "ipConfigurations": [
-                    {
-                        "name": "ipconfig1",
-                        "etag": "W/\"abf113f1-de65-447f-8ffb-b9b3c6a149ff\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "privateIPAddress": "193.168.3.5",
-                            "privateIPAllocationMethod": "Dynamic",
-                            "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG2Subnet_name'))]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4"
-                        }
-                    }
-                ],
-                "dnsSettings": {
-                    "dnsServers": [],
-                    "appliedDnsServers": [],
-                    "internalDomainNameSuffix": "1ctjtyorjxru3j4esn4ffuxwne.gx.internal.cloudapp.net"
-                },
-                "macAddress": "00-0D-3A-94-F7-6E",
-                "enableAcceleratedNetworking": false,
-                "enableIPForwarding": false,
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG2nsg_name'))]"
-                },
-                "primary": true,
-                "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_SQLWin16_02_name'))]"
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG2Subnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG2nsg_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/networkInterfaces/win2016-85-001713'.",
-            "type": "Microsoft.Network/networkInterfaces",
-            "name": "[parameters('networkInterfaces_win2016_85_001713_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "18a9f498-fa72-4c92-8798-e7123334480c",
-                "ipConfigurations": [
-                    {
-                        "name": "ipconfig1",
-                        "etag": "W/\"993c75ec-96ce-4f80-b8c0-6ee1d3a6d6c4\"",
-                        "properties": {
-                            "provisioningState": "Succeeded",
-                            "privateIPAddress": "193.168.3.4",
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_Win2016_85_001_ip_name'))]"
-                            },
-                            "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG2Subnet_name'))]"
-                            },
-                            "primary": true,
-                            "privateIPAddressVersion": "IPv4"
-                        }
-                    }
-                ],
-                "dnsSettings": {
-                    "dnsServers": [],
-                    "appliedDnsServers": [],
-                    "internalDomainNameSuffix": "1ctjtyorjxru3j4esn4ffuxwne.gx.internal.cloudapp.net"
-                },
-                "macAddress": "00-0D-3A-93-5A-D3",
-                "enableAcceleratedNetworking": false,
-                "enableIPForwarding": false,
-                "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG2nsg_name'))]"
-                },
-                "primary": true,
-                "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('virtualMachines_Win2016_85_001_name'))]"
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_Win2016_85_001_ip_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG2Subnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_ESG2nsg_name'))]"
             ]
         },
         {
@@ -1161,23 +914,6 @@
                 "provisioningState": "Succeeded",
                 "resourceGuid": "a72fb50f-0f6e-446c-8739-8a1b4cccee9a",
                 "ipAddress": "52.173.139.236",
-                "publicIPAddressVersion": "IPv4",
-                "publicIPAllocationMethod": "Static",
-                "idleTimeoutInMinutes": 4
-            },
-            "dependsOn": []
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/publicIPAddresses/Win2016-85-001-ip'.",
-            "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[parameters('publicIPAddresses_Win2016_85_001_ip_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "centralus",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "resourceGuid": "0b1d231f-66f9-44e2-9c06-e6756fcaa713",
-                "ipAddress": "52.176.49.34",
                 "publicIPAddressVersion": "IPv4",
                 "publicIPAllocationMethod": "Static",
                 "idleTimeoutInMinutes": 4

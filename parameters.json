@@ -14,9 +14,6 @@
         "publicIPAddresses_lbip_name": {
             "value": "lbip"
         },
-        "virtualMachines_SQLWin16_02_name": {
-            "value": "ns-SQLWin16-02"
-        },
         "virtualMachines_ESG_2376_001_name": {
             "value": "neil-ESG-2376-001"
         },
@@ -35,17 +32,11 @@
         "networkSecurityGroups_ESG2nsg_name": {
             "value": "neil-ESG2nsg"
         },
-        "virtualMachines_Win2016_85_001_name": {
-            "value": "Win2016-85-001"
-        },
         "networkInterfaces_esg_2376_00186_name": {
             "value": "neil-nic_esg-2376-00186"
         },
         "networkInterfaces_Pinterface_002_name": {
             "value": "neil-Pinterface-002"
-        },
-        "networkInterfaces_sqlwin16_02812_name": {
-            "value": "neil-sqlwin16-02812"
         },
         "networkInterfaces_esg_2376_002907_name": {
             "value": "neil-nic_esg-2376-002907"
@@ -55,12 +46,6 @@
         },
         "publicIPAddresses_ESG_2376_002_ip_name": {
             "value": "neil-ESG-2376-002-ip"
-        },
-        "networkInterfaces_win2016_85_001713_name": {
-            "value": "neil-nic_win2016-85-001713"
-        },
-        "publicIPAddresses_Win2016_85_001_ip_name": {
-            "value": "neil-Win2016-85-001-ip"
         },
         "availabilitySets_ESG1AvailabilitySet_name": {
             "value": "neil-ESG1AvailabilitySet"
@@ -88,9 +73,6 @@
         },
         "securityRules_SMTP_name": {
             "value": "SMTP"
-        },
-        "disks_SQLWin16_02_disk2_name": {
-            "value": "disk_SQLWin16-02_disk2_neil10122017_1202"
         },
         "securityRules_SMTPoutbound_name": {
             "value": "SMTPoutbound"
