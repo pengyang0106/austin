@@ -2,11 +2,23 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
+        "vm_name": {
+            "value": "esg-vm"
+        },
+        "numberOfVMs" : {
+            "value": 3
+        },
+        "networkInterfaces_vm_name": {
+            "value": "nic-esg-vm"
+        },
+        "publicIPAddresses_vm_name": {
+            "value": "public-ip-esg-vm"
+        },
         "virtualNetworks_ESG1_name": {
             "value": "neil-ESG1"
         },
         "esg_image_name": {
-            "value": "85_2376"
+            "value": "85_2493"
         },
         "storageAccounts_esg1_name": {
             "value": "emaildev"
@@ -14,38 +26,11 @@
         "publicIPAddresses_lbip_name": {
             "value": "lbip"
         },
-        "virtualMachines_ESG_2376_001_name": {
-            "value": "neil-ESG-2376-001"
-        },
-        "virtualMachines_ESG_2376_002_name": {
-            "value": "neil-ESG-2376-002"
-        },
         "networkInterfaces_Pinterface_name": {
             "value": "neil-Pinterface"
         },
         "loadBalancers_esgLoadBalancer_name": {
             "value": "neil-esgLoadBalancer"
-        },
-        "networkSecurityGroups_ESG1nsg_name": {
-            "value": "neil-ESG1nsg"
-        },
-        "networkSecurityGroups_ESG2nsg_name": {
-            "value": "neil-ESG2nsg"
-        },
-        "networkInterfaces_esg_2376_00186_name": {
-            "value": "neil-nic_esg-2376-00186"
-        },
-        "networkInterfaces_Pinterface_002_name": {
-            "value": "neil-Pinterface-002"
-        },
-        "networkInterfaces_esg_2376_002907_name": {
-            "value": "neil-nic_esg-2376-002907"
-        },
-        "publicIPAddresses_ESG_2376_001_ip_name": {
-            "value": "neil-ESG-2376-001-ip"
-        },
-        "publicIPAddresses_ESG_2376_002_ip_name": {
-            "value": "neil-ESG-2376-002-ip"
         },
         "availabilitySets_ESG1AvailabilitySet_name": {
             "value": "neil-ESG1AvailabilitySet"
@@ -65,17 +50,38 @@
         "subnets_GatewaySubnet_name": {
             "value": "GatewaySubnet"
         },
-        "securityRules_SSH_name": {
-            "value": "SSH"
+        "networkSecurityGroups_VPNNSG_name": {
+            "value": "neilVPNSecurityGroup"
         },
-        "securityRules_FTP_name": {
-            "value": "FTP"
+        "securityRules_Port_22_name": {
+            "value": "Port_22"
         },
-        "securityRules_SMTP_name": {
-            "value": "SMTP"
+        "securityRules_Port_80_name": {
+            "value": "Port_80"
         },
-        "securityRules_SMTPoutbound_name": {
-            "value": "SMTPoutbound"
+        "securityRules_Port_443_name": {
+            "value": "Port_443"
+        },
+        "securityRules_Port_6671_name": {
+            "value": "Port_6671"
+        },
+        "securityRules_Port_1433_name": {
+            "value": "Port_1433"
+        },
+        "securityRules_Port_9449_name": {
+            "value": "Port_9449"
+        },
+        "securityRules_Port_50800_name": {
+            "value": "Port_50800"
+        },
+        "securityRules_Port_443_out_name": {
+            "value": "Port_443_out"
+        },
+        "securityRules_Port_6671_out_name": {
+            "value": "Port_6671_out"
+        },
+        "securityRules_Port_1433_out_name": {
+            "value": "Port_1433_out"
         }
     }
 }
