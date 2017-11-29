@@ -6,7 +6,7 @@
             "value": "esg-vm"
         },
         "numberOfVMs" : {
-            "value": 3
+            "value": 1
         },
         "networkInterfaces_vm_name": {
             "value": "nic-esg-vm"
@@ -18,7 +18,7 @@
             "value": "neil-ESG1"
         },
         "esg_image_name": {
-            "value": "85_2493"
+            "value": "85_2376"
         },
         "storageAccounts_esg1_name": {
             "value": "emaildev"
@@ -43,9 +43,6 @@
         },
         "subnets_ESG1Subnet_name": {
             "value": "neil-ESG1Subnet"
-        },
-        "subnets_ESG2Subnet_name": {
-            "value": "neil-ESG2Subnet"
         },
         "subnets_GatewaySubnet_name": {
             "value": "GatewaySubnet"

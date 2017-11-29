@@ -180,7 +180,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "TCP",
-                            "sourcePortRange": "22",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "22",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -197,7 +197,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "6671",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "6671",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -214,7 +214,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "1433",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "1433",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -231,7 +231,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "17700-17715",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "17700-17715",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -248,7 +248,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "9449",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "9449",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -265,7 +265,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "443",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "443",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -282,7 +282,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "6671",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "6671",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -299,7 +299,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "50800",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "50800",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -316,7 +316,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "1433",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "1433",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -333,7 +333,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "80",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "80",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -350,7 +350,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "protocol": "*",
-                            "sourcePortRange": "443",
+                            "sourcePortRange": "*",
                             "destinationPortRange": "443",
                             "sourceAddressPrefix": "*",
                             "destinationAddressPrefix": "*",
@@ -484,7 +484,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "TCP",
-                "sourcePortRange": "22",
+                "sourcePortRange": "*",
                 "destinationPortRange": "22",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -507,7 +507,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "6671",
+                "sourcePortRange": "*",
                 "destinationPortRange": "6671",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -530,7 +530,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "1433",
+                "sourcePortRange": "*",
                 "destinationPortRange": "1433",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -553,7 +553,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "9449",
+                "sourcePortRange": "*",
                 "destinationPortRange": "9449",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -576,7 +576,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "443",
+                "sourcePortRange": "*",
                 "destinationPortRange": "443",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -599,7 +599,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "6671",
+                "sourcePortRange": "*",
                 "destinationPortRange": "6671",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -622,7 +622,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "50800",
+                "sourcePortRange": "*",
                 "destinationPortRange": "50800",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -645,7 +645,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "1433",
+                "sourcePortRange": "*",
                 "destinationPortRange": "1433",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -668,7 +668,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "80",
+                "sourcePortRange": "*",
                 "destinationPortRange": "80",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -691,7 +691,7 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "protocol": "*",
-                "sourcePortRange": "443",
+                "sourcePortRange": "*",
                 "destinationPortRange": "443",
                 "sourceAddressPrefix": "*",
                 "destinationAddressPrefix": "*",
@@ -721,12 +721,6 @@
                 "platformUpdateDomainCount": 5,
                 "platformFaultDomainCount": 2,
                 "virtualMachines": [
-                    {
-                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vm_name'))]"
-                    },
-                    {
-                        "id": "[resourceId('Microsoft.Compute/virtualMachines', parameters('vm_name'))]"
-                    }
                 ]
             },
             "dependsOn": [
@@ -1130,20 +1124,6 @@
             "properties": {
                 "provisioningState": "Succeeded",
                 "addressPrefix": "193.168.0.0/24"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_ESG1_name'))]"
-            ]
-        },
-        {
-            "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/virtualNetworks/ESG1/subnets/ESG2Subnet'.",
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworks_ESG1_name'), '/', parameters('subnets_ESG2Subnet_name'))]",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "provisioningState": "Succeeded",
-                "addressPrefix": "193.168.3.0/24"
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_ESG1_name'))]"
