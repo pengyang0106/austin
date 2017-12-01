@@ -6,7 +6,7 @@
             "value": "esg-vm"
         },
         "numberOfVMs" : {
-            "value": 3
+            "value": 1
         },
         "networkInterfaces_vm_name": {
             "value": "nic-esg-vm"
@@ -18,7 +18,7 @@
             "value": "ESG1"
         },
         "esg_image_name": {
-            "value": "85_2376"
+            "value": "85_2504"
         },
         "storageAccounts_esg1_name": {
             "value": "emaildev"

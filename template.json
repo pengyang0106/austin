@@ -196,6 +196,23 @@
                         }
                     },
                     {
+                        "name": "Port_25",
+                        "etag": "W/\"53e94ed5-7978-42d3-b4dd-5be5c89dd379\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "protocol": "TCP",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "25",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 101,
+                            "direction": "Inbound",
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },                    
+                    {
                         "name": "Port_6671",
                         "etag": "W/\"53e94ed5-7978-42d3-b4dd-5be5c89dd379\"",
                         "properties": {
@@ -742,7 +759,7 @@
                     "osDisk": {
                         "osType": "Linux",
                         "osState": "Generalized",
-                        "diskSizeGB": 101,
+                        "diskSizeGB": 34,
                         "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/Appliance_Main_', parameters('esg_image_name'),'.vhd'))]",
                         "caching": "ReadWrite",
                         "storageAccountType": "Standard_LRS"
@@ -750,8 +767,8 @@
                     "dataDisks": [
                         {
                             "lun": 0,
-                            "diskSizeGB": 100,
-                            "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/DataDisk.vhd'))]",
+                            "diskSizeGB": 256,
+                            "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/EmptyDisk255.vhd'))]",
                             "caching": "ReadWrite",
                             "storageAccountType": "Standard_LRS"
                         }
@@ -821,27 +838,6 @@
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_ESG1_name'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaces_vm_name'), copyIndex(1)))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaces_Pinterface_name'), copyIndex(1)))]"
-            ],
-            "resources" : [
-                {
-                    "name": "upgradewaagent",
-                    "type": "extensions",
-                    "location": "[resourceGroup().location]",
-                    "apiVersion": "2017-03-30",
-                    "properties": {
-                        "publisher": "Microsoft.Azure.Extensions",
-                        "type": "CustomScript",
-                        "typeHandlerVersion": "2.0",
-                        "autoUpgradeMinorVersion": true,
-                       "settings": {
-                        "fileUris" : [],   
-                        "commandToExecute": "echo 'websense#123' | sudo -S yum -y install WALinuxAgent"
-                       }
-                    },
-                    "dependsOn": [
-                        "[concat('Microsoft.Compute/virtualMachines/', parameters('vm_name'), copyIndex(1))]"
-                    ]
-                }
             ]
         },
         {
