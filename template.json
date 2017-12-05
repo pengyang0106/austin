@@ -34,30 +34,6 @@
             "defaultValue": "esgLoadBalancer",
             "type": "string"
         },
-        "loadBalancers_esgLoadBalancer_id": {
-            "defaultValue": "/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/arm_automation2/providers/Microsoft.Network/loadBalancers/esgLoadBalancer/frontendIPConfigurations/LoadBalancerFrontEnd",
-            "type": "String"
-        },
-        "loadBalancers_esgLoadBalancer_id_1": {
-            "defaultValue": "/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/arm_automation2/providers/Microsoft.Network/loadBalancers/esgLoadBalancer/backendAddressPools/ESG1Backpool",
-            "type": "String"
-        },
-        "loadBalancers_esgLoadBalancer_id_2": {
-            "defaultValue": "/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/arm_automation2/providers/Microsoft.Network/loadBalancers/esgLoadBalancer/probes/ESG1HP",
-            "type": "String"
-        },
-        "loadBalancers_esgLoadBalancer_id_3": {
-            "defaultValue": "/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/arm_automation2/providers/Microsoft.Network/loadBalancers/esgLoadBalancer/frontendIPConfigurations/LoadBalancerFrontEnd",
-            "type": "String"
-        },
-        "loadBalancers_esgLoadBalancer_id_4": {
-            "defaultValue": "/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/arm_automation2/providers/Microsoft.Network/loadBalancers/esgLoadBalancer/backendAddressPools/ESG1Backpool",
-            "type": "String"
-        },
-        "loadBalancers_esgLoadBalancer_id_5": {
-            "defaultValue": "/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/arm_automation2/providers/Microsoft.Network/loadBalancers/esgLoadBalancer/probes/ESG1HP",
-            "type": "String"
-        },
         "networkInterfaces_vm_name": {
             "defaultValue": "nic-esg-vm",
             "type": "string"
@@ -838,13 +814,13 @@
                         {
                             "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaces_vm_name'), copyIndex(1)))]",
                             "properties": {
-                                "primary": true
+                                "primary": false
                             }
                         },
                         {
                             "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaces_Pinterface_name'), copyIndex(1)))]",
                             "properties": {
-                                "primary": false
+                                "primary": true
                             }
                         }
                     ]
@@ -1036,13 +1012,10 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "privateIPAllocationMethod": "Dynamic",
-                            "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('publicIPAddresses_vm_name'), copyIndex(1)))]"
-                            },
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]"
                             },
-                            "primary": true,
+                            "primary": false,
                             "privateIPAddressVersion": "IPv4"
                         }
                     }
@@ -1057,7 +1030,7 @@
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
                 },
-                "primary": true,
+                "primary": false,
                 "virtualMachine": {
                     "id": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('vm_name'), copyIndex(1)))]"
                 }
@@ -1092,7 +1065,10 @@
                             "subnet": {
                                 "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]"
                             },
-                            "primary": false,
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('publicIPAddresses_vm_name'), copyIndex(1)))]"
+                            },
+                            "primary": true,
                             "privateIPAddressVersion": "IPv4",
                             "loadBalancerBackendAddressPools": [
                                 {
@@ -1112,7 +1088,7 @@
                 "networkSecurityGroup": {
                     "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
                 },
-                "primary": false,
+                "primary": true,
                 "virtualMachine": {
                     "id": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('vm_name'), copyIndex(1)))]"
                 }
