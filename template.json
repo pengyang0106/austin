@@ -2,125 +2,51 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "esg_image_name": {
-            "defaultValue": "85_2504",
-            "type": "string"
-        },
-        "virtualNetworks_ESG1_name": {
-            "defaultValue": "ESG1",
-            "type": "string"
-        },
-        "storageAccounts_esg1_name": {
-            "defaultValue": "emaildev",
-            "type": "string"
-        },
-        "publicIPAddresses_lbip_name": {
-            "defaultValue": "lbip",
-            "type": "string"
-        },
-        "vm_name": {
-            "defaultValue": "esg-vm",
-            "type": "string"
-        },
         "numberOfVMs" : {
             "defaultvalue": 3,
             "type": "int"
         },
-        "networkInterfaces_Pinterface_name": {
-            "defaultValue": "Pinterface",
+        "storageAccounts_esg1_name": {
+            "defaultValue": "emaildev",
             "type": "string"
-        },
-        "loadBalancers_esgLoadBalancer_name": {
-            "defaultValue": "esgLoadBalancer",
-            "type": "string"
-        },
-        "networkInterfaces_vm_name": {
-            "defaultValue": "nic-esg-vm",
-            "type": "string"
-        },
-        "publicIPAddresses_vm_name": {
-            "defaultValue": "public-ip-esg-vm",
-            "type": "string"
-        },
-        "availabilitySets_ESG1AvailabilitySet_name": {
-            "defaultValue": "ESG1AvailabilitySet",
-            "type": "string"
-        },
-        "publicIPAddresses_esg1gatewaypublicIP_name": {
-            "defaultValue": "esg1gatewaypublicIP",
-            "type": "string"
-        },
-        "virtualNetworkGateways_VNetGatewayESG1_name": {
-            "defaultValue": "VNetGatewayESG1",
-            "type": "string"
-        },
-        "subnets_ESG1Subnet_name": {
-            "defaultValue": "ESG1Subnet",
-            "type": "string"
-        },
-        "subnets_ESG2Subnet_name": {
-            "defaultValue": "ESG2Subnet",
-            "type": "string"
-        },
-        "subnets_GatewaySubnet_name": {
-            "defaultValue": "GatewaySubnet",
-            "type": "string"
-        },
-        "networkSecurityGroups_VPNNSG_name": {
-            "defaultValue": "VPNNSG",
-            "type": "String"
-        },
-        "securityRules_Port_22_name": {
-            "defaultValue": "Port_22",
-            "type": "String"
-        },
-        "securityRules_Port_80_name": {
-            "defaultValue": "Port_80",
-            "type": "String"
-        },
-        "securityRules_Port_443_name": {
-            "defaultValue": "Port_443",
-            "type": "String"
-        },
-        "securityRules_Port_6671_name": {
-            "defaultValue": "Port_6671",
-            "type": "String"
-        },
-        "securityRules_Port_1433_name": {
-            "defaultValue": "Port_1433",
-            "type": "String"
-        },
-        "securityRules_Port_9449_name": {
-            "defaultValue": "Port_9449",
-            "type": "String"
-        },
-        "securityRules_Port_50800_name": {
-            "defaultValue": "Port_50800",
-            "type": "String"
-        },
-        "securityRules_Port_443_out_name": {
-            "defaultValue": "Port_443_out",
-            "type": "String"
-        },
-        "securityRules_Port_6671_out_name": {
-            "defaultValue": "Port_6671_out",
-            "type": "String"
-        },
-        "securityRules_Port_1433_out_name": {
-            "defaultValue": "Port_1433_out",
-            "type": "String"
         },
         "deployVirtualNetworkGateway" : {
             "defaultvalue": false,
             "type": "bool"
         }
     },
-    "variables": {},
+    "variables": {
+        "esg_image_name": "85_2504",
+        "virtualNetworks_ESG1_name": "ESG1",
+        "publicIPAddresses_lbip_name": "lbip",
+        "vm_name": "esg-vm",
+        "networkInterfaces_Pinterface_name": "Pinterface",
+        "loadBalancers_esgLoadBalancer_name": "esgLoadBalancer",
+        "networkInterfaces_vm_name": "nic-esg-vm",
+        "publicIPAddresses_vm_name": "public-ip-esg-vm",
+        "availabilitySets_ESG1AvailabilitySet_name": "ESG1AvailabilitySet",
+        "publicIPAddresses_esg1gatewaypublicIP_name": "esg1gatewaypublicIP",
+        "virtualNetworkGateways_VNetGatewayESG1_name": "VNetGatewayESG1",
+        "subnets_ESG1Subnet_name": "ESG1Subnet",
+        "subnets_ESG2Subnet_name": "ESG2Subnet",
+        "subnets_GatewaySubnet_name": "GatewaySubnet",
+        "networkSecurityGroups_VPNNSG_name": "VPNNSG",
+        "securityRules_Port_22_name": "Port_22",
+        "securityRules_Port_80_name": "Port_80",
+        "securityRules_Port_443_name": "Port_443",
+        "securityRules_Port_6671_name": "Port_6671",
+        "securityRules_Port_1433_name": "Port_1433",
+        "securityRules_Port_9449_name": "Port_9449",
+        "securityRules_Port_50800_name": "Port_50800",
+        "securityRules_Port_443_out_name": "Port_443_out",
+        "securityRules_Port_6671_out_name": "Port_6671_out",
+        "securityRules_Port_1433_out_name": "Port_1433_out"
+    },
     "resources": [
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/virtualNetworks/ESG1'.",
             "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetworks_ESG1_name')]",
+            "name": "[variables('virtualNetworks_ESG1_name')]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -134,13 +60,13 @@
                 },
                 "subnets": [
                     {
-                        "name": "[concat(parameters('virtualNetworks_ESG1_name'),'Subnet')]",
+                        "name": "[concat(variables('virtualNetworks_ESG1_name'),'Subnet')]",
                         "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
                         "properties": {
                             "provisioningState": "Succeeded",
                             "addressPrefix": "193.168.1.0/24",
                             "networkSecurityGroup": {
-                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', 'VPNSecurityGroup')]"
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
                             }
                         }
                     },
@@ -153,7 +79,7 @@
                         }
                     },
                     {
-                        "name": "[parameters('subnets_ESG2Subnet_name')]",
+                        "name": "[variables('subnets_ESG2Subnet_name')]",
                         "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
                         "properties": {
                             "provisioningState": "Succeeded",
@@ -164,13 +90,13 @@
                 "virtualNetworkPeerings": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG'.",
             "type": "Microsoft.Network/networkSecurityGroups",
-            "name": "[parameters('networkSecurityGroups_VPNNSG_name')]",
+            "name": "[variables('networkSecurityGroups_VPNNSG_name')]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -499,7 +425,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_22'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_22_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_22_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -516,13 +442,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_6671'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_6671_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_6671_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -539,13 +465,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_1433'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_1433_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_1433_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -562,13 +488,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_9449'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_9449_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_9449_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -585,13 +511,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_443'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_443_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_443_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -608,13 +534,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_6671_out'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_6671_out_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_6671_out_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -631,13 +557,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_50800'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_50800_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_50800_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -654,13 +580,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_1433_out'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_1433_out_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_1433_out_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -677,13 +603,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_80'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_80_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_80_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -700,13 +626,13 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/cddb4853-ab74-4260-9e13-1a54d67a0385/resourceGroups/network-test/providers/Microsoft.Network/networkSecurityGroups/VPNNSG/securityRules/Port_443_out'.",
             "type": "Microsoft.Network/networkSecurityGroups/securityRules",
-            "name": "[concat(parameters('networkSecurityGroups_VPNNSG_name'), '/', parameters('securityRules_Port_443_out_name'))]",
+            "name": "[concat(variables('networkSecurityGroups_VPNNSG_name'), '/', variables('securityRules_Port_443_out_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -723,7 +649,7 @@
                 "destinationAddressPrefixes": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         
@@ -733,7 +659,7 @@
             "sku": {
                 "name": "Aligned"
             },
-            "name": "[parameters('availabilitySets_ESG1AvailabilitySet_name')]",
+            "name": "[variables('availabilitySets_ESG1AvailabilitySet_name')]",
             "apiVersion": "2016-04-30-preview",
             "location": "centralus",
             "tags": {},
@@ -750,7 +676,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/images/85_2376'.",
             "type": "Microsoft.Compute/images",
-            "name": "[parameters('esg_image_name')]",
+            "name": "[variables('esg_image_name')]",
             "apiVersion": "2016-04-30-preview",
             "location": "centralus",
             "scale": null,
@@ -760,7 +686,7 @@
                         "osType": "Linux",
                         "osState": "Generalized",
                         "diskSizeGB": 34,
-                        "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/Appliance_Main_', parameters('esg_image_name'),'.vhd'))]",
+                        "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/Appliance_Main_', variables('esg_image_name'),'.vhd'))]",
                         "caching": "ReadWrite",
                         "storageAccountType": "Standard_LRS"
                     },
@@ -779,7 +705,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Compute/virtualMachines/ESG-2376-001'.",
             "type": "Microsoft.Compute/virtualMachines",
-            "name": "[concat(parameters('vm_name'), copyIndex(1))]",
+            "name": "[concat(variables('vm_name'), copyIndex(1))]",
             "apiVersion": "2016-04-30-preview",
             "location": "centralus",
             "tags": {},
@@ -790,18 +716,18 @@
             },
             "properties": {
                  "availabilitySet": {
-                    "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]"
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('availabilitySets_ESG1AvailabilitySet_name'))]"
                 },
                 "hardwareProfile": {
                     "vmSize": "Standard_A3"
                 },
                 "storageProfile": {
                     "imageReference": {
-                        "id": "[resourceId('Microsoft.Compute/images', parameters('esg_image_name'))]"
+                        "id": "[resourceId('Microsoft.Compute/images', variables('esg_image_name'))]"
                     }
                 },
                 "osProfile": {
-                    "computerName": "[concat(parameters('vm_name'), copyIndex(1))]",
+                    "computerName": "[concat(variables('vm_name'), copyIndex(1))]",
                     "adminUsername": "azureuser",
                     "adminPassword": "websense#123",
                     "linuxConfiguration": {
@@ -812,13 +738,13 @@
                 "networkProfile": {
                     "networkInterfaces": [
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaces_vm_name'), copyIndex(1)))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('networkInterfaces_vm_name'), copyIndex(1)))]",
                             "properties": {
                                 "primary": false
                             }
                         },
                         {
-                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaces_Pinterface_name'), copyIndex(1)))]",
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('networkInterfaces_Pinterface_name'), copyIndex(1)))]",
                             "properties": {
                                 "primary": true
                             }
@@ -833,17 +759,17 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Compute/images', parameters('esg_image_name'))]",
-                "[resourceId('Microsoft.Compute/availabilitySets', parameters('availabilitySets_ESG1AvailabilitySet_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_ESG1_name'))]",
-                "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaces_vm_name'), copyIndex(1)))]",
-                "[resourceId('Microsoft.Network/networkInterfaces', concat(parameters('networkInterfaces_Pinterface_name'), copyIndex(1)))]"
+                "[resourceId('Microsoft.Compute/images', variables('esg_image_name'))]",
+                "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_ESG1AvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworks_ESG1_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('networkInterfaces_vm_name'), copyIndex(1)))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('networkInterfaces_Pinterface_name'), copyIndex(1)))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/loadBalancers/esgLoadBalancer'.",
             "type": "Microsoft.Network/loadBalancers",
-            "name": "[parameters('loadBalancers_esgLoadBalancer_name')]",
+            "name": "[variables('loadBalancers_esgLoadBalancer_name')]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -858,7 +784,7 @@
                             "provisioningState": "Succeeded",
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_lbip_name'))]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_lbip_name'))]"
                             }
                         }
                     }
@@ -879,7 +805,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "frontendIPConfiguration": {
-                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', parameters('loadBalancers_esgLoadBalancer_name'), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
                             },
                             "frontendPort": 25,
                             "backendPort": 25,
@@ -888,10 +814,10 @@
                             "protocol": "Tcp",
                             "loadDistribution": "Default",
                             "backendAddressPool": {
-                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', parameters('loadBalancers_esgLoadBalancer_name'), '/backendAddressPools/ESG1Backpool')]"
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/backendAddressPools/ESG1Backpool')]"
                             },
                             "probe": {
-                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', parameters('loadBalancers_esgLoadBalancer_name'), '/probes/ESG1HP')]"
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/probes/ESG1HP')]"
                             }
                         }
                     },
@@ -901,7 +827,7 @@
                         "properties": {
                             "provisioningState": "Succeeded",
                             "frontendIPConfiguration": {
-                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', parameters('loadBalancers_esgLoadBalancer_name'), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
                             },
                             "frontendPort": 587,
                             "backendPort": 587,
@@ -910,10 +836,10 @@
                             "protocol": "Tcp",
                             "loadDistribution": "Default",
                             "backendAddressPool": {
-                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', parameters('loadBalancers_esgLoadBalancer_name'), '/backendAddressPools/ESG1Backpool')]"
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/backendAddressPools/ESG1Backpool')]"
                             },
                             "probe": {
-                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', parameters('loadBalancers_esgLoadBalancer_name'), '/probes/ESG1HP')]"
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/probes/ESG1HP')]"
                             }
                         }
                     }
@@ -936,13 +862,13 @@
                 "inboundNatPools": []
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_lbip_name'))]"
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_lbip_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/publicIPAddresses/ESG-2376-001-ip'.",
             "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[concat(parameters('publicIPAddresses_vm_name'), copyIndex(1))]",
+            "name": "[concat(variables('publicIPAddresses_vm_name'), copyIndex(1))]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -961,7 +887,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/publicIPAddresses/esg1gatewaypublicIP'.",
             "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[parameters('publicIPAddresses_esg1gatewaypublicIP_name')]",
+            "name": "[variables('publicIPAddresses_esg1gatewaypublicIP_name')]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -978,7 +904,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/publicIPAddresses/lbip'.",
             "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[parameters('publicIPAddresses_lbip_name')]",
+            "name": "[variables('publicIPAddresses_lbip_name')]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -995,7 +921,7 @@
            {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/networkInterfaces/esg-2376-00186'.",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[concat(parameters('networkInterfaces_vm_name'), copyIndex(1))]",
+            "name": "[concat(variables('networkInterfaces_vm_name'), copyIndex(1))]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -1013,7 +939,7 @@
                             "provisioningState": "Succeeded",
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_ESG1Subnet_name'))]"
                             },
                             "primary": false,
                             "privateIPAddressVersion": "IPv4"
@@ -1028,23 +954,23 @@
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": false,
                 "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
                 },
                 "primary": false,
                 "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('vm_name'), copyIndex(1)))]"
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vm_name'), copyIndex(1)))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('publicIPAddresses_vm_name'), copyIndex(1)))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('publicIPAddresses_vm_name'), copyIndex(1)))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_ESG1Subnet_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/networkInterfaces/Pinterface'.",
             "type": "Microsoft.Network/networkInterfaces",
-            "name": "[concat(parameters('networkInterfaces_Pinterface_name'), copyIndex(1))]",
+            "name": "[concat(variables('networkInterfaces_Pinterface_name'), copyIndex(1))]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -1063,16 +989,16 @@
                             "provisioningState": "Succeeded",
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_ESG1Subnet_name'))]"
                             },
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(parameters('publicIPAddresses_vm_name'), copyIndex(1)))]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('publicIPAddresses_vm_name'), copyIndex(1)))]"
                             },
                             "primary": true,
                             "privateIPAddressVersion": "IPv4",
                             "loadBalancerBackendAddressPools": [
                                 {
-                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_esgLoadBalancer_name')), '/backendAddressPools/ESG1Backpool')]"
+                                    "id": "[concat(resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_esgLoadBalancer_name')), '/backendAddressPools/ESG1Backpool')]"
                                 }
                             ]
                         }
@@ -1086,23 +1012,23 @@
                 "enableAcceleratedNetworking": false,
                 "enableIPForwarding": false,
                 "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
                 },
                 "primary": true,
                 "virtualMachine": {
-                    "id": "[resourceId('Microsoft.Compute/virtualMachines', concat(parameters('vm_name'), copyIndex(1)))]"
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vm_name'), copyIndex(1)))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_ESG1Subnet_name'))]",
-                "[resourceId('Microsoft.Network/loadBalancers', parameters('loadBalancers_esgLoadBalancer_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_ESG1Subnet_name'))]",
+                "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_esgLoadBalancer_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
          {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/virtualNetworkGateways/VNetGatewayESG1'.",
             "type": "Microsoft.Network/virtualNetworkGateways",
-            "name": "[parameters('virtualNetworkGateways_VNetGatewayESG1_name')]",
+            "name": "[variables('virtualNetworkGateways_VNetGatewayESG1_name')]",
             "condition" : "[parameters('deployVirtualNetworkGateway')]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
@@ -1116,10 +1042,10 @@
                         "properties": {
                             "privateIPAllocationMethod": "Dynamic",
                             "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_esg1gatewaypublicIP_name'))]"
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_esg1gatewaypublicIP_name'))]"
                             },
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_GatewaySubnet_name'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_GatewaySubnet_name'))]"
                             }
                         }
                     }
@@ -1161,32 +1087,32 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', parameters('publicIPAddresses_esg1gatewaypublicIP_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetworks_ESG1_name'), parameters('subnets_GatewaySubnet_name'))]"
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_esg1gatewaypublicIP_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_GatewaySubnet_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/virtualNetworks/ESG1/subnets/ESG1Subnet'.",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworks_ESG1_name'), '/', parameters('subnets_ESG1Subnet_name'))]",
+            "name": "[concat(variables('virtualNetworks_ESG1_name'), '/', variables('subnets_ESG1Subnet_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
                 "addressPrefix": "193.168.1.0/24",
                 "networkSecurityGroup": {
-                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_ESG1_name'))]",
-                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworks_ESG1_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/virtualNetworks/ESG1/subnets/GatewaySubnet'.",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetworks_ESG1_name'), '/', parameters('subnets_GatewaySubnet_name'))]",
+            "name": "[concat(variables('virtualNetworks_ESG1_name'), '/', variables('subnets_GatewaySubnet_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -1194,7 +1120,7 @@
                 "addressPrefix": "193.168.0.0/24"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_ESG1_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworks_ESG1_name'))]"
             ]
         }
     ]
