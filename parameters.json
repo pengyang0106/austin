@@ -3,13 +3,16 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "numberOfVMs" : {
-            "value": 4
+            "value": 1
         },
         "storageAccounts_esg1_name": {
             "value": "emaildev"
         },
         "deployVirtualNetworkGateway": {
             "value": false
+        },
+        "tritonManagerIp" : {
+            "value": "127.0.0.1"
         }
     }
 }

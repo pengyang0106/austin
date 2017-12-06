@@ -11,12 +11,16 @@
             "type": "string"
         },
         "deployVirtualNetworkGateway" : {
-            "defaultvalue": false,
+            "defaultValue": false,
             "type": "bool"
+        },
+        "tritonManagerIp" : {
+            "defaultValue": "127.0.0.1",
+            "type": "string"
         }
     },
     "variables": {
-        "esg_image_name": "85_2504",
+        "esg_image_name": "osdisk2517",
         "virtualNetworks_ESG1_name": "ESG1",
         "publicIPAddresses_lbip_name": "lbip",
         "vm_name": "esg-vm",
@@ -686,7 +690,7 @@
                         "osType": "Linux",
                         "osState": "Generalized",
                         "diskSizeGB": 34,
-                        "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/Appliance_Main_', variables('esg_image_name'),'.vhd'))]",
+                        "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/', variables('esg_image_name'),'.vhd'))]",
                         "caching": "ReadWrite",
                         "storageAccountType": "Standard_LRS"
                     },
@@ -758,6 +762,29 @@
                     }
                 }
             },
+            "resources" : [
+                    {
+                        "name": "upgradewaagent",
+                        "type": "extensions",
+                        "location": "[resourceGroup().location]",
+                        "apiVersion": "2017-03-30",
+                        "properties": {
+                            "publisher": "Microsoft.Azure.Extensions",
+                            "type": "CustomScript",
+                            "typeHandlerVersion": "2.0",
+                            "autoUpgradeMinorVersion": true,
+                           "settings": {
+                            "fileUris" : [
+                                "https://emaildev.blob.core.windows.net/esg1/scripts/privateIp.sh"
+                            ],   
+                            "commandToExecute": "[concat('./privateIp.sh ', parameters('tritonManagerIp'))]"
+                           }
+                        },
+                        "dependsOn": [
+                            "[concat('Microsoft.Compute/virtualMachines/', variables('vm_name'), copyIndex(1))]"
+                        ]
+                   }
+            ],
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/images', variables('esg_image_name'))]",
                 "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_ESG1AvailabilitySet_name'))]",

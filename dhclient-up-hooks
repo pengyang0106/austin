@@ -1,0 +1,25 @@
+#!/bin/sh
+#
+# This script informs Triton Manager of the private IP of this VM
+# when assigned.
+#
+
+primary_interface="eth0"
+my_hostname=`hostname -s`
+
+#read from file
+triton_manager_ip="122.123.124.125"
+
+[ "$interface" == "$primary_interface" ] || exit
+
+case "$reason" in 
+BOUND|RENEW|REBIND|REBOOT)
+    logger "POSTING private IP[$new_ip_address] to Triton Manager at [$triton_manager_ip]"
+    
+    data_to_post = "{\"privateIpAddress\": \"$new_ip_address\", \"hostname\":\"$my_hostname\"}"
+    
+    curl -H "Content-Type: application/json" -X POST -d $data_to_post $triton_manager_ip
+    
+    logger "Content-Type: application/json; charset=UTF-8 -X POST -d $data_to_post $triton_manager_ip" 
+    ;;
+esac
