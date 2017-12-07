@@ -12,7 +12,7 @@ tritonIp=$1;
 
 data_to_send="{\"privateIpAddress\": \"$new_ip_address\", \"hostname\":\"$my_hostname\", \"tritonIp\":\"$tritonIp\"}";
 
-logger data_to_send;
+logger $data_to_send;
 
-curl -k -v -H "Content-Type: application/json" -X POST -d "$data_to_send https://$tritonIp/api/registerApplicance";
+curl -k -v -H "Content-Type: application/json" -X POST -d "$data_to_send" "https://$tritonIp/api/registerApplicance";
 
