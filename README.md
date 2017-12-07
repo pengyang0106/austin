@@ -1,16 +1,16 @@
-Forcepoint Full ESG Azure Template
-==================================
+# Forcepoint Full ESG Azure Template
 
-h1. Info
+
+## Info
 This is pretty particular to the ESG team's Azure setup, we'll work on making it more generic.
 
 
-h1. Setup
+## Setup
 We expect an appliance image and 255GB  blank disk image to be deployed in your storage account.  The `esg_image_name` variable should match your filename.  If you have a newer version that changes the size of the disk, make sure to update the template.
 
 We expect privateIp.sh to be deployed to your storage account's blob storage under /scripts/ ... this is run by the Microsoft ARM External Script Extension after VM provisioning.
 
-h1. Deployment
+## Deployment
 
 ```bash
 $ az login
