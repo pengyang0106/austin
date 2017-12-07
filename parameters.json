@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "numberOfVMs" : {
-            "value": 5
+            "value": 3 
         },
         "storageAccounts_esg1_name": {
             "value": "emaildev"
