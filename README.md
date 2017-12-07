@@ -17,3 +17,7 @@ $ az login
 $ az group create --name your_resource_group --location "Central US"
 $ az group deployment create --resource group your_resource_group --template-file template.json --parameters @parameters.json --name your_deployment_name
 ```
+
+### A successful deployment looks like this:
+
+![3 VM deployment](doc/3vms.png)
