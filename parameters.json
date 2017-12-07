@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "numberOfVMs" : {
-            "value": 1
+            "value": 5
         },
         "storageAccounts_esg1_name": {
             "value": "emaildev"
@@ -12,7 +12,7 @@
             "value": false
         },
         "tritonManagerIp" : {
-            "value": "127.0.0.1"
+            "value": "triton-registry-simulator.cfapps.io"
         }
     }
 }
