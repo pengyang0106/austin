@@ -11,7 +11,7 @@ my_hostname=`hostname -s`;
 tritonIp=$1;
 registrationKey=$2;
 
-data_to_send="{\"privateIpAddress\": \"$new_ip_address\", \"hostname\":\"$my_hostname\", \"tritonIp\":\"$tritonIp\", \"registrationKey":\"registrationToken\""}";
+data_to_send="{\"privateIpAddress\": \"$new_ip_address\", \"hostname\":\"$my_hostname\", \"tritonIp\":\"$tritonIp\", \"registrationKey\":\"registrationToken\"}";
 
 logger $data_to_send;
 
