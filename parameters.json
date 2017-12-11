@@ -13,6 +13,9 @@
         },
         "tritonManagerIp" : {
             "value": "triton-registry-simulator.cfapps.io"
+        },
+        "registrationToken": {
+            "value": "TST36CS3K36VCQCQ"
         }
     }
 }

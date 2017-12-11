@@ -9,10 +9,11 @@ new_ip_address=$(ip addr show eth0 | grep "inet\b" | awk '{print $2}' | cut -d/ 
 my_hostname=`hostname -s`;
 
 tritonIp=$1;
+registrationKey=$2;
 
-data_to_send="{\"privateIpAddress\": \"$new_ip_address\", \"hostname\":\"$my_hostname\", \"tritonIp\":\"$tritonIp\"}";
+data_to_send="{\"privateIpAddress\": \"$new_ip_address\", \"hostname\":\"$my_hostname\", \"tritonIp\":\"$tritonIp\", \"registrationKey":\"registrationToken\""}";
 
 logger $data_to_send;
 
-curl -k -v -H "Content-Type: application/json" -X POST -d "$data_to_send" "https://$tritonIp/registrations";
+curl -k -v -H "Content-Type: application/json" -X POST -d "$data_to_send" "https://$tritonIp/registration";
 

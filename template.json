@@ -17,6 +17,10 @@
         "tritonManagerIp" : {
             "defaultValue": "127.0.0.1",
             "type": "string"
+        },
+        "registrationToken": {
+            "defaultValue": "",
+            "type": "string"
         }
     },
     "variables": {
@@ -777,7 +781,7 @@
                             "fileUris" : [
                                 "https://emaildev.blob.core.windows.net/esg1/scripts/privateIp.sh"
                             ],   
-                            "commandToExecute": "[concat('./privateIp.sh ', parameters('tritonManagerIp'))]"
+                            "commandToExecute": "[concat('./privateIp.sh ', parameters('tritonManagerIp'), ' ', parameters('registrationToken'))]"
                            }
                         },
                         "dependsOn": [
