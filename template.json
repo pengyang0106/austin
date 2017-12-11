@@ -28,10 +28,10 @@
         "virtualNetworks_ESG1_name": "ESG1",
         "publicIPAddresses_lbip_name": "lbip",
         "vm_name": "esg-vm",
-        "networkInterfaces_Pinterface_name": "Pinterface",
+        "networkInterfaces_Pinterface_name": "secondary-nic-esg-vm",
         "loadBalancers_esgLoadBalancer_name": "esgLoadBalancer",
-        "networkInterfaces_vm_name": "nic-esg-vm",
-        "publicIPAddresses_vm_name": "public-ip-esg-vm",
+        "networkInterfaces_vm_name": "primary-nic-esg-vm",
+        "publicIPAddresses_vm_name": "public-ip-primary-esg-vm",
         "availabilitySets_ESG1AvailabilitySet_name": "ESG1AvailabilitySet",
         "publicIPAddresses_esg1gatewaypublicIP_name": "esg1gatewaypublicIP",
         "virtualNetworkGateways_VNetGatewayESG1_name": "VNetGatewayESG1",
@@ -693,7 +693,7 @@
                     "osDisk": {
                         "osType": "Linux",
                         "osState": "Generalized",
-                        "diskSizeGB": 34,
+                        "diskSizeGB": 32,
                         "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/', variables('esg_image_name'),'.vhd'))]",
                         "caching": "ReadWrite",
                         "storageAccountType": "Standard_LRS"
