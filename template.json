@@ -24,7 +24,7 @@
         }
     },
     "variables": {
-        "esg_image_name": "osdisk2517",
+        "esg_image_name": "osdisk25252",
         "virtualNetworks_ESG1_name": "ESG1",
         "publicIPAddresses_lbip_name": "lbip",
         "vm_name": "esg-vm",
