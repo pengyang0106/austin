@@ -5,17 +5,20 @@
         "numberOfVMs" : {
             "value": 2
         },
-        "storageAccounts_esg1_name": {
+        "storageAccount_name": {
             "value": "emaildev"
         },
         "deployVirtualNetworkGateway": {
-            "value": false
+            "value": true
         },
         "tritonManagerIp" : {
             "value": "triton-registry-simulator.cfapps.io"
         },
         "registrationToken": {
             "value": "TST36CS3K36VCQCQ"
+        },
+        "virtualNetwork_name": {
+            "value": "ESG1"
         }
     }
 }

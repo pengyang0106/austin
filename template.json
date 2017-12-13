@@ -6,7 +6,7 @@
             "defaultvalue": 3,
             "type": "int"
         },
-        "storageAccounts_esg1_name": {
+        "storage_Account_name": {
             "defaultValue": "emaildev",
             "type": "string"
         },
@@ -21,11 +21,14 @@
         "registrationToken": {
             "defaultValue": "",
             "type": "string"
+        },
+        "virtualNetwork_name": {
+            "defaultValue": "ESG1",
+            "type": "string"
         }
     },
     "variables": {
-        "esg_image_name": "osdisk25252",
-        "virtualNetworks_ESG1_name": "ESG1",
+        "esg_image_name": "osdisk_2537",
         "publicIPAddresses_lbip_name": "lbip",
         "vm_name": "esg-vm",
         "networkInterfaces_Pinterface_name": "secondary-nic-esg-vm",
@@ -54,7 +57,7 @@
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/virtualNetworks/ESG1'.",
             "type": "Microsoft.Network/virtualNetworks",
-            "name": "[variables('virtualNetworks_ESG1_name')]",
+            "name": "[parameters('virtualNetwork_name')]",
             "apiVersion": "2017-06-01",
             "location": "centralus",
             "scale": null,
@@ -68,7 +71,7 @@
                 },
                 "subnets": [
                     {
-                        "name": "[concat(variables('virtualNetworks_ESG1_name'),'Subnet')]",
+                        "name": "[concat(parameters('virtualNetwork_name'),'Subnet')]",
                         "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
                         "properties": {
                             "provisioningState": "Succeeded",
@@ -694,7 +697,7 @@
                         "osType": "Linux",
                         "osState": "Generalized",
                         "diskSizeGB": 32,
-                        "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/', variables('esg_image_name'),'.vhd'))]",
+                        "blobUri": "[concat('https', '://', parameters('storage_Account_name'), '.blob.core.windows.net', concat('/esg1/', variables('esg_image_name'),'.vhd'))]",
                         "caching": "ReadWrite",
                         "storageAccountType": "Standard_LRS"
                     },
@@ -702,7 +705,7 @@
                         {
                             "lun": 0,
                             "diskSizeGB": 256,
-                            "blobUri": "[concat('https', '://', parameters('storageAccounts_esg1_name'), '.blob.core.windows.net', concat('/esg1/EmptyDisk255.vhd'))]",
+                            "blobUri": "[concat('https', '://', parameters('storage_Account_name'), '.blob.core.windows.net', concat('/esg1/EmptyDisk255.vhd'))]",
                             "caching": "ReadWrite",
                             "storageAccountType": "Standard_LRS"
                         }
@@ -768,7 +771,7 @@
             },
             "resources" : [
                     {
-                        "name": "upgradewaagent",
+                        "name": "registerWithTriton",
                         "type": "extensions",
                         "location": "[resourceGroup().location]",
                         "apiVersion": "2017-03-30",
@@ -792,7 +795,7 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Compute/images', variables('esg_image_name'))]",
                 "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_ESG1AvailabilitySet_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworks_ESG1_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('networkInterfaces_vm_name'), copyIndex(1)))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('networkInterfaces_Pinterface_name'), copyIndex(1)))]"
             ]
@@ -970,7 +973,7 @@
                             "provisioningState": "Succeeded",
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_ESG1Subnet_name'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]"
                             },
                             "primary": false,
                             "privateIPAddressVersion": "IPv4"
@@ -994,7 +997,7 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('publicIPAddresses_vm_name'), copyIndex(1)))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_ESG1Subnet_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
@@ -1020,7 +1023,7 @@
                             "provisioningState": "Succeeded",
                             "privateIPAllocationMethod": "Dynamic",
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_ESG1Subnet_name'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]"
                             },
                             "publicIPAddress": {
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('publicIPAddresses_vm_name'), copyIndex(1)))]"
@@ -1051,7 +1054,7 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_ESG1Subnet_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]",
                 "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_esgLoadBalancer_name'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
@@ -1076,7 +1079,7 @@
                                 "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_esg1gatewaypublicIP_name'))]"
                             },
                             "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_GatewaySubnet_name'))]"
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_GatewaySubnet_name'))]"
                             }
                         }
                     }
@@ -1119,13 +1122,13 @@
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_esg1gatewaypublicIP_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', variables('virtualNetworks_ESG1_name'), variables('subnets_GatewaySubnet_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_GatewaySubnet_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/virtualNetworks/ESG1/subnets/ESG1Subnet'.",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(variables('virtualNetworks_ESG1_name'), '/', variables('subnets_ESG1Subnet_name'))]",
+            "name": "[concat(parameters('virtualNetwork_name'), '/', variables('subnets_ESG1Subnet_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -1136,14 +1139,14 @@
                 }
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworks_ESG1_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]",
                 "[resourceId('Microsoft.Network/networkSecurityGroups', variables('networkSecurityGroups_VPNNSG_name'))]"
             ]
         },
         {
             "comments": "Generalized from resource: '/subscriptions/ee4f28c5-8b36-4e60-bae1-b37a145063f7/resourceGroups/ESG1/providers/Microsoft.Network/virtualNetworks/ESG1/subnets/GatewaySubnet'.",
             "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(variables('virtualNetworks_ESG1_name'), '/', variables('subnets_GatewaySubnet_name'))]",
+            "name": "[concat(parameters('virtualNetwork_name'), '/', variables('subnets_GatewaySubnet_name'))]",
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
@@ -1151,7 +1154,7 @@
                 "addressPrefix": "193.168.0.0/24"
             },
             "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworks_ESG1_name'))]"
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]"
             ]
         }
     ]
