@@ -5,7 +5,7 @@
         "numberOfVMs" : {
             "value": 2
         },
-        "storageAccount_name": {
+        "storage_Account_name": {
             "value": "emaildev"
         },
         "deployVirtualNetworkGateway": {
