@@ -22,6 +22,12 @@
         },
         "deployRegion": {
             "value": "centralus"
+        },
+        "vmAdminUserName": {
+            "value": "azureuser"
+        },
+        "vmAdminPassword": {
+            "value": "websense#123"
         }
     }
 }
