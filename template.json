@@ -25,6 +25,10 @@
         "virtualNetwork_name": {
             "defaultValue": "ESG1",
             "type": "string"
+        },
+        "deployRegion": {
+            "defaultValue": "centralus",
+            "type": "string"
         }
     },
     "variables": {
@@ -59,7 +63,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('virtualNetwork_name')]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -109,7 +113,7 @@
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('networkSecurityGroups_VPNNSG_name')]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -672,7 +676,7 @@
             },
             "name": "[variables('availabilitySets_ESG1AvailabilitySet_name')]",
             "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "tags": {},
             "scale": null,
             "properties": {
@@ -689,7 +693,7 @@
             "type": "Microsoft.Compute/images",
             "name": "[variables('esg_image_name')]",
             "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "properties": {
                 "storageProfile": {
@@ -718,7 +722,7 @@
             "type": "Microsoft.Compute/virtualMachines",
             "name": "[concat(variables('vm_name'), copyIndex(1))]",
             "apiVersion": "2016-04-30-preview",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "tags": {},
             "scale": null,
             "copy" : {
@@ -805,7 +809,7 @@
             "type": "Microsoft.Network/loadBalancers",
             "name": "[variables('loadBalancers_esgLoadBalancer_name')]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -904,7 +908,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[concat(variables('publicIPAddresses_vm_name'), copyIndex(1))]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "copy" : {
                 "name": "vmpublicips",
@@ -923,7 +927,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddresses_esg1gatewaypublicIP_name')]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -940,7 +944,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddresses_lbip_name')]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",
@@ -957,7 +961,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[concat(variables('networkInterfaces_vm_name'), copyIndex(1))]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "copy" : {
                 "name": "nic-interfaces",
@@ -1006,7 +1010,7 @@
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[concat(variables('networkInterfaces_Pinterface_name'), copyIndex(1))]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "copy" : {
                 "name":"pinterfaces",
@@ -1065,7 +1069,7 @@
             "name": "[variables('virtualNetworkGateways_VNetGatewayESG1_name')]",
             "condition" : "[parameters('deployVirtualNetworkGateway')]",
             "apiVersion": "2017-06-01",
-            "location": "centralus",
+            "location": "[parameters('deployRegion')]",
             "scale": null,
             "properties": {
                 "resourceGuid": "11643302-03e9-4498-8964-0c1853246686",

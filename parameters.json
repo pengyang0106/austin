@@ -19,6 +19,9 @@
         },
         "virtualNetwork_name": {
             "value": "ESG1"
+        },
+        "deployRegion": {
+            "value": "centralus"
         }
     }
 }
