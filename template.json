@@ -2,17 +2,24 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "numberOfVMs" : {
-            "defaultvalue": 2,
-            "type": "int"
+        "tShirtSize": {
+            "defaultValue": "Small",
+            "type": "string",
+            "allowedValues": [
+                "Demo",
+                "Small",
+                "Medium",
+                "Large",
+                "XL",
+                "XXL"
+            ],
+            "metadata" : {
+                "Descrpition": "Size of Email Security Gateway deployment"
+            }
         },
         "storage_Account_name": {
             "defaultValue": "emaildev",
             "type": "string"
-        },
-        "deployVirtualNetworkGateway" : {
-            "defaultValue": false,
-            "type": "bool"
         },
         "tritonManagerIp" : {
             "defaultValue": "127.0.0.1",
@@ -30,16 +37,54 @@
             "defaultValue": "centralus",
             "type": "string"
         },
-        "vmAdminUsername": {
+        "vmAdminUserName": {
             "defaultValue": "azureuser",
             "type": "string"
         },
         "vmAdminPassword": {
             "defaultValue": "websense#123",
-            "type": "string"
+            "type": "securestring"
         }
     },
     "variables": {
+        "tShirtSize": "[variables(concat('tShirtSize', parameters('tShirtSize')))]",
+        "tshirtSizeDemo": {
+            "numberOfVMs": 1,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet": false,
+            "enableVPNGateway": true
+        },
+        "tshirtSizeSmall": {
+            "numberOfVMs": 2,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet": true,
+            "enableVPNGateway": false
+        },
+        "tshirtSizeMedium": {
+            "numberOfVMs": 3,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet": true,
+            "enableVPNGateway": false
+
+        },
+        "tshirtSizeLarge": {
+            "numberOfVMs": 4,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet":true,
+            "enableVPNGateway": false
+        },
+        "tshirtSizeXL": {
+            "numberOfVMs": 4,
+            "vmSize": "Standard_A4",
+            "enableAvailabilitySet": true,
+            "enableVPNGateway": false
+        },
+        "tshirtSizeXXL": {
+            "numberOfVMs": 8,
+            "vmSize": "Standard_A4",
+            "enableAvailabilitySet": true,
+            "enableVPNGateway": false
+        },
         "esg_image_name": "osdisk_2537",
         "publicIPAddresses_lbip_name": "lbip",
         "vm_name": "esg-vm",
@@ -720,7 +765,7 @@
             "scale": null,
             "copy" : {
                 "name": "virtualmachines",
-                "count": "[parameters('numberOfVMs')]"
+                "count": "[variables('tShirtSize').numberOfVMs]"
             },
             "properties": {
                  "availabilitySet": {
@@ -903,7 +948,7 @@
             "scale": null,
             "copy" : {
                 "name": "vmpublicips",
-                "count": "[parameters('numberOfVMs')]"
+                "count": "[variables('tShirtSize').numberOfVMs]"
             },
             "properties": {
                 "provisioningState": "Succeeded",
@@ -953,7 +998,7 @@
             "scale": null,
             "copy" : {
                 "name": "nic-interfaces",
-                "count": "[parameters('numberOfVMs')]" 
+                "count": "[variables('tShirtSize').numberOfVMs]" 
             },
             "properties": {
                 "provisioningState": "Succeeded",
@@ -1001,7 +1046,7 @@
             "scale": null,
             "copy" : {
                 "name":"pinterfaces",
-                "count": "[parameters('numberOfVMs')]"
+                "count": "[variables('tShirtSize').numberOfVMs]"
             },
             "properties": {
                 "provisioningState": "Succeeded",
@@ -1053,7 +1098,7 @@
          {
             "type": "Microsoft.Network/virtualNetworkGateways",
             "name": "[variables('virtualNetworkGateways_VNetGatewayESG1_name')]",
-            "condition" : "[parameters('deployVirtualNetworkGateway')]",
+            "condition" : "[variables('tShirtSize').enableVPNGateway]",
             "apiVersion": "2017-06-01",
             "location": "[parameters('deployRegion')]",
             "scale": null,
