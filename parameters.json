@@ -9,7 +9,7 @@
             "value": "emaildev"
         },
         "deployVirtualNetworkGateway": {
-            "value": true
+            "value": false
         },
         "tritonManagerIp" : {
             "value": "triton-registry-simulator.cfapps.io"
