@@ -1,0 +1,128 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "deployRegion": {
+            "defaultValue": "centralus",
+            "type": "string"
+        },
+        "enableloadBalancer": {
+            "defaultValue": false,
+            "type": "bool"
+        }
+    },
+    "variables": {
+        "loadBalancers_esgLoadBalancer_name" : "esgLoadBalancer",
+        "publicIPAddresses_lbip_name" : "lbip"
+    },
+    "resources" : [
+        {
+            "type": "Microsoft.Network/loadBalancers",
+            "name": "[variables('loadBalancers_esgLoadBalancer_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "[parameters('deployRegion')]",
+            "scale": null,
+            "properties": {
+                "frontendIPConfigurations": [
+                    {
+                        "name": "LoadBalancerFrontEnd",
+                        "properties": {
+
+                            "privateIPAllocationMethod": "Dynamic",
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_lbip_name'))]"
+                            }
+                        }
+                    }
+                ],
+                "backendAddressPools": [
+                    {
+                        "name": "ESG1Backpool",
+                        "properties": {
+                            "provisioningState": "Succeeded"
+                        }
+                    }
+                ],
+                "loadBalancingRules": [
+                    {
+                        "name": "Port-25",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 25,
+                            "backendPort": 25,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/backendAddressPools/ESG1Backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/probes/ESG1HP')]"
+                            }
+                        }
+                    },
+                    {
+                        "name": "Port-587",
+                        "properties": {
+                            "frontendIPConfiguration": {
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/frontendIPConfigurations/LoadBalancerFrontEnd')]"
+                            },
+                            "frontendPort": 587,
+                            "backendPort": 587,
+                            "enableFloatingIP": false,
+                            "idleTimeoutInMinutes": 4,
+                            "protocol": "Tcp",
+                            "loadDistribution": "Default",
+                            "backendAddressPool": {
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/backendAddressPools/ESG1Backpool')]"
+                            },
+                            "probe": {
+                                "id": "[concat(subscription().id, '/resourceGroups/', resourceGroup().name, '/providers/Microsoft.Network/loadBalancers/', variables('loadBalancers_esgLoadBalancer_name'), '/probes/ESG1HP')]"
+                            }
+                        }
+                    }
+                ],
+                "probes": [
+                    {
+                        "name": "ESG1HP",
+                        "properties": {
+                            "protocol": "Tcp",
+                            "port": 25,
+                            "intervalInSeconds": 5,
+                            "numberOfProbes": 2
+                        }
+                    }
+                ],
+                "inboundNatRules": [],
+                "outboundNatRules": [],
+                "inboundNatPools": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_lbip_name'))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[variables('publicIPAddresses_lbip_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "[parameters('deployRegion')]",
+            "condition": "[parameters('enableLoadBalancer')]",
+            "scale": null,
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            },
+            "dependsOn": []
+        }
+    ],
+    "outputs":{
+        "loadBalancerResourceID": {
+            "type": "string",
+            "value": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_esgLoadBalancer_name'))]"
+        }
+    }
+}

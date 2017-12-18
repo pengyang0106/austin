@@ -3,7 +3,7 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "tShirtSize": {
-            "value": "Demo"
+            "value": "Small"
         },
         "storage_Account_name": {
             "value": "emaildev"
