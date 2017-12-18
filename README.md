@@ -6,7 +6,8 @@ This is pretty particular to the ESG team's Azure setup, we'll work on making it
 
 
 ## Setup
-We expect an appliance image and 255GB  blank disk image to be deployed in your storage account.  The `esg_image_name` variable should match your filename.  If you have a newer version that changes the size of the disk, make sure to update the template.
+- We expect an appliance image and a 255GB blank disk image to be deployed in your storage account.  The `esg_image_name` variable should match your filename.  If you have a newer version that changes the size of the disk, make sure to update the template.
+- We expect the shared resoruces template to be uploaded in your storage account as a blob under `https://${storageAccountName}.blob.core.windows.net/esg1/templates/shared-resources.json`
 
 We expect privateIp.sh to be deployed to your storage account's blob storage under /scripts/ ... this is run by the Microsoft ARM External Script Extension after VM provisioning.
 
