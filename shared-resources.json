@@ -2,10 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "deployRegion": {
-            "defaultValue": "centralus",
-            "type": "string"
-        },
         "networkSecurityGroups_VPNNSG_name": {
             "defaultValue": "ESGVPN",
             "type": "string"
@@ -37,7 +33,7 @@
             "type": "Microsoft.Compute/images",
             "name": "[parameters('esg_image_name')]",
             "apiVersion": "2016-04-30-preview",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "storageProfile": {
@@ -65,7 +61,7 @@
             "type": "Microsoft.Network/networkSecurityGroups",
             "name": "[variables('networkSecurityGroups_VPNNSG_name')]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "provisioningState": "Succeeded",

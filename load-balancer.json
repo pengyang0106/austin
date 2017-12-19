@@ -2,10 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "deployRegion": {
-            "defaultValue": "centralus",
-            "type": "string"
-        },
         "enableLoadBalancer": {
             "defaultValue": false,
             "type": "bool"
@@ -20,7 +16,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddresses_lbip_name')]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "condition": "[parameters('enableLoadBalancer')]",
             "scale": null,
             "properties": {
@@ -35,7 +31,7 @@
             "name": "[variables('loadBalancers_esgLoadBalancer_name')]",
             "apiVersion": "2017-06-01",
             "condition": "[parameters('enableLoadBalancer')]",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "frontendIPConfigurations": [

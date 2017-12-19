@@ -21,4 +21,6 @@ $ az group deployment create --resource group your_resource_group --template-fil
 
 ### A successful deployment looks like this:
 
-![3 VM deployment](doc/3vms.png)
+![Demo Deployment](doc/demoDeploy.png)
+
+![Small Deployment](doc/smallDeploy.png)

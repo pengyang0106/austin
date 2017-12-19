@@ -12,19 +12,16 @@
             "value": "triton-registry-simulator.cfapps.io"
         },
         "registrationToken": {
-            "value": "TST36CS3K36VCQCQ"
+            "value": "ABC123"
         },
         "virtualNetwork_name": {
             "value": "ESG1"
-        },
-        "deployRegion": {
-            "value": "centralus"
         },
         "vmAdminUserName": {
             "value": "azureuser"
         },
         "vmAdminPassword": {
-            "value": "websense#123"
+            "value": "mypw#123"
         }
     }
 }

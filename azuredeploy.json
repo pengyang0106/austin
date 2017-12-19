@@ -32,10 +32,6 @@
             "defaultValue": "ESG1",
             "type": "string"
         },
-        "deployRegion": {
-            "defaultValue": "centralus",
-            "type": "string"
-        },
         "vmAdminUserName": {
             "defaultValue": "azureuser",
             "type": "string"
@@ -109,7 +105,6 @@
                  "contentVersion":"1.0.0.0"
               },
               "parameters": {
-                 "deployRegion": {"value": "[parameters('deployRegion')]"},
                  "networkSecurityGroups_VPNNSG_name": {"value": "[variables('networkSecurityGroups_VPNNSG_name')]"},
                  "esg_image_name": {"value": "[variables('esg_image_name')]"}
                }
@@ -126,7 +121,6 @@
                  "contentVersion":"1.0.0.0"
               },
               "parameters": {
-                 "deployRegion": {"value": "[parameters('deployRegion')]"},
                  "enableLoadBalancer": {"value": "[variables('tshirtSize').enableLoadBalancer]"}
                }
             }
@@ -135,7 +129,7 @@
             "type": "Microsoft.Network/virtualNetworks",
             "name": "[parameters('virtualNetwork_name')]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "resourceGuid": "e199a6d8-4dd1-4ee3-a7c4-937c52d2f66c",
@@ -185,7 +179,7 @@
             "name": "[variables('availabilitySets_ESG1AvailabilitySet_name')]",
             "apiVersion": "2016-04-30-preview",
             "condition": "[variables('tShirtSize').enableAvailabilitySet]",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "tags": {},
             "scale": null,
             "properties": {
@@ -203,7 +197,7 @@
             "condition": "[variables('tShirtSize').enableAvailabilitySet]",
             "name": "[concat(variables('vm_name'), '-ha', copyIndex(1))]",
             "apiVersion": "2016-04-30-preview",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "tags": {},
             "scale": null,
             "copy" : {
@@ -293,7 +287,7 @@
             "condition": "[not(variables('tShirtSize').enableAvailabilitySet)]",
             "name": "[concat(variables('vm_name'), 1)]",
             "apiVersion": "2016-04-30-preview",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "tags": {},
             "scale": null,
             "properties": {
@@ -373,7 +367,7 @@
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[concat(variables('publicIPAddresses_vm_name'), copyIndex(1))]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "copy" : {
                 "name": "vmpublicips",
@@ -392,7 +386,7 @@
             "name": "[variables('publicIPAddresses_esg1gatewaypublicIP_name')]",
             "condition": "[variables('tShirtSize').enableVPNGateway]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "publicIPAddressVersion": "IPv4",
@@ -406,7 +400,7 @@
             "comments": "Primary NIC for demo",
             "name": "[concat(variables('nic_primary_name'), 1)]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "condition": "[lessOrEquals(variables('tShirtSize').numberOfVMs, 1)]",
             "scale": null,
             "properties": {
@@ -455,7 +449,7 @@
             "condition": "[lessOrEquals(variables('tShirtSize').numberOfVMs, 1)]",
             "name": "[concat(variables('nic_secondary_name'), 1)]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "ipConfigurations": [
@@ -498,7 +492,7 @@
             "condition": "[greaterOrEquals(variables('tShirtSize').numberOfVMs, 2)]",
             "name": "[concat(variables('nic_primary_name'), '-ha' ,copyIndex(1))]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "copy" : {
                 "name":"pinterfaces",
@@ -555,7 +549,7 @@
             "condition": "[greaterOrEquals(variables('tShirtSize').numberOfVMs, 2)]",
             "comments": "Secondary NIC for Customers",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "copy" : {
                 "name": "nic-interfaces",
@@ -603,7 +597,7 @@
             "name": "[variables('virtualNetworkGateways_VNetGatewayESG1_name')]",
             "condition" : "[variables('tShirtSize').enableVPNGateway]",
             "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
+            "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
                 "resourceGuid": "11643302-03e9-4498-8964-0c1853246686",
