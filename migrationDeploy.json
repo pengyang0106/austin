@@ -1,0 +1,365 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "tShirtSize": {
+            "defaultValue": "Small",
+            "type": "string",
+            "allowedValues": [
+                "Demo",
+                "Small",
+                "Medium",
+                "Large",
+                "XL"
+            ],
+            "metadata" : {
+                "Descrpition": "Size of Email Security Gateway deployment"
+            }
+        },
+        "storage_Account_name": {
+            "defaultValue": "emaildev",
+            "type": "string"
+        },
+        "tritonManagerIp" : {
+            "defaultValue": "127.0.0.1",
+            "type": "string"
+        },
+        "registrationToken": {
+            "defaultValue": "",
+            "type": "string"
+        },
+        "virtualNetwork_name": {
+            "defaultValue": "ESG1",
+            "type": "string"
+        },
+        "vmAdminUserName": {
+            "defaultValue": "azureuser",
+            "type": "string"
+        },
+        "vmAdminPassword": {
+            "defaultValue": "websense#123",
+            "type": "securestring"
+        },
+        "networkSecurityGroups_VPNNSG_name" : {
+            "defaultValue": "VPNNSG",
+            "type": "string"
+        }
+    },
+    "variables": {
+        "tShirtSize": "[variables(concat('tShirtSize', parameters('tShirtSize')))]",
+        "tshirtSizeDemo": {
+            "numberOfVMs": 1,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet": false,
+            "enableVPNGateway": true,
+            "enableLoadBalancer": false
+        },
+        "tshirtSizeSmall": {
+            "numberOfVMs": 2,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet": true,
+            "enableVPNGateway": false,
+            "enableLoadBalancer": true
+        },
+        "tshirtSizeMedium": {
+            "numberOfVMs": 3,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet": true,
+            "enableVPNGateway": false,
+            "enableLoadBalancer": true
+
+        },
+        "tshirtSizeLarge": {
+            "numberOfVMs": 5,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet":true,
+            "enableVPNGateway": false,
+            "enableLoadBalancer": true
+        },
+        "tshirtSizeXL": {
+            "numberOfVMs": 8,
+            "vmSize": "Standard_A3",
+            "enableAvailabilitySet": true,
+            "enableVPNGateway": false,
+            "enableLoadBalancer": true
+        },
+        "esg_image_name": "osdisk_2545",
+        "vm_name": "esg-vm-up",
+        "nic_primary_name": "primary-nic-vm-up",
+        "nic_secondary_name": "secondary-nic-vm-up",
+        "publicIPAddresses_vm_name": "public-ip-primary-vm-up",
+        "availabilitySets_ESG1AvailabilitySet_name": "esgAvailabilitySetUP",
+        "subnets_ESG1Subnet_name": "ESG1Subnet",
+        "subnets_GatewaySubnet_name": "GatewaySubnet",
+        "customData": "[base64(concat(parameters('tritonManagerIp'), ':', parameters('registrationToken')))]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Compute/availabilitySets",
+            "sku": {
+                "name": "Aligned"
+            },
+            "name": "[variables('availabilitySets_ESG1AvailabilitySet_name')]",
+            "apiVersion": "2016-04-30-preview",
+            "condition": "[variables('tShirtSize').enableAvailabilitySet]",
+            "location": "[resourceGroup().location]",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "platformUpdateDomainCount": 5,
+                "platformFaultDomainCount": 2,
+                "virtualMachines": [
+                ]
+            },
+            "dependsOn": [
+            ]
+        },
+        {
+            "type": "Microsoft.Compute/images",
+            "name": "[variables('esg_image_name')]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "[resourceGroup().location]",
+            "scale": null,
+            "properties": {
+                "storageProfile": {
+                    "osDisk": {
+                        "osType": "Linux",
+                        "osState": "Generalized",
+                        "diskSizeGB": 32,
+                        "blobUri": "[concat('https', '://', parameters('storage_Account_name'), '.blob.core.windows.net', concat('/esg1/', parameters('esg_image_name'),'.vhd'))]",
+                        "caching": "ReadWrite",
+                        "storageAccountType": "Standard_LRS"
+                    },
+                    "dataDisks": [
+                        {
+                            "lun": 0,
+                            "diskSizeGB": 255,
+                            "caching": "ReadWrite",
+                            "storageAccountType": "Standard_LRS",
+                            "createOption": "Empty"
+                        }
+                    ]
+                }
+            }
+        },         
+        {
+            "comments" : "Virtual Machines inside Availability Set",
+            "type": "Microsoft.Compute/virtualMachines",
+            "condition": "[variables('tShirtSize').enableAvailabilitySet]",
+            "name": "[concat(variables('vm_name'), '-ha', copyIndex(1))]",
+            "apiVersion": "2016-04-30-preview",
+            "location": "[resourceGroup().location]",
+            "tags": {},
+            "scale": null,
+            "copy" : {
+                "name": "virtualmachines",
+                "count": "[variables('tShirtSize').numberOfVMs]"
+            },
+            "properties": {
+                 "availabilitySet": {
+                    "id": "[resourceId('Microsoft.Compute/availabilitySets',variables('availabilitySets_ESG1AvailabilitySet_name'))]"
+                },
+                "hardwareProfile": {
+                    "vmSize": "Standard_A3"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "id": "[resourceId('Microsoft.Compute/images', variables('esg_image_name'))]"
+                    }
+                },
+                "osProfile": {
+                    "computerName": "[concat(variables('vm_name'), '-ha-up', copyIndex(1))]",
+                    "adminUsername": "[parameters('vmAdminUserName')]",
+                    "adminPassword": "[parameters('vmAdminPassword')]",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false
+                    },
+                    "customData": "[variables('customData')]",
+                    "secrets": []
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic_primary_name'), '-ha-up', copyIndex(1)))]",
+                            "properties": {
+                                "primary": true
+                            }
+                        },
+                        {
+                            "id": "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic_secondary_name'), '-ha-up', copyIndex(1)))]",
+                            "properties": {
+                                "primary": false
+                            }
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://emaildevdiag637.blob.core.windows.net/"
+                    }
+                }
+            },
+            "resources" : [
+                    {
+                        "name": "registerWithTritonHAUP",
+                        "type": "extensions",
+                        "condition": "[variables('tShirtSize').enableAvailabilitySet]",
+                        "location": "[resourceGroup().location]",
+                        "apiVersion": "2017-03-30",
+                        "properties": {
+                            "publisher": "Microsoft.Azure.Extensions",
+                            "type": "CustomScript",
+                            "typeHandlerVersion": "2.0",
+                            "autoUpgradeMinorVersion": true,
+                           "settings": {
+                            "fileUris" : [
+                                "https://emaildev.blob.core.windows.net/esg1/scripts/privateIp.sh"
+                            ],   
+                            "commandToExecute": "[concat('./privateIp.sh ', parameters('tritonManagerIp'), ' ', parameters('registrationToken'))]"
+                           }
+                        },
+                        "dependsOn": [
+                            "[concat('Microsoft.Compute/virtualMachines/', variables('vm_name'), '-ha', copyIndex(1))]"
+                        ]
+                   }
+            ],
+            "dependsOn": [
+                "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_ESG1AvailabilitySet_name'))]",
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic_primary_name'), '-ha', copyIndex(1)))]",
+                "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic_secondary_name'), '-ha', copyIndex(1)))]"
+            ]
+        },
+        {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[concat(variables('publicIPAddresses_vm_name'),'-up', copyIndex(1))]",
+            "apiVersion": "2017-06-01",
+            "location": "[resourceGroup().location]",
+            "scale": null,
+            "copy" : {
+                "name": "vmpublicips",
+                "count": "[variables('tShirtSize').numberOfVMs]"
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Dynamic",
+                "idleTimeoutInMinutes": 4
+            },
+            "dependsOn": []
+        },
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "comments": "Primary NIC for Customers",
+            "condition": "[greaterOrEquals(variables('tShirtSize').numberOfVMs, 2)]",
+            "name": "[concat(variables('nic_primary_name'), '-ha-up' ,copyIndex(1))]",
+            "apiVersion": "2017-06-01",
+            "location": "[resourceGroup().location]",
+            "scale": null,
+            "copy" : {
+                "name":"pinterfaces",
+                "count": "[variables('tShirtSize').numberOfVMs]"
+            },
+            "properties": {
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1-up",
+                        "properties": {
+
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]"
+                            },
+                            "publicIPAddress": {
+                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('publicIPAddresses_vm_name'),'-up', copyIndex(1)))]"
+                            },
+                            "primary": true,
+                            "privateIPAddressVersion": "IPv4",
+                            "loadBalancerBackendAddressPools": [
+                                {
+                                    "id": "[concat(reference('loadBalancerTemplate').outputs.loadBalancerResourceID.value, '/backendAddressPools/ESG1Backpool')]"
+                                }
+                            ]
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "1ctjtyorjxru3j4esn4ffuxwne.gx.internal.cloudapp.net"
+                },
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                },
+                "primary": true,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vm_name'), '-ha-up', copyIndex(1)))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]",
+                "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('publicIPAddresses_vm_name'), '-up', copyIndex(1)))]"
+            ]
+        },  
+        {
+            "type": "Microsoft.Network/networkInterfaces",
+            "name": "[concat(variables('nic_secondary_name'), '-ha', copyIndex(1))]",
+            "condition": "[greaterOrEquals(variables('tShirtSize').numberOfVMs, 2)]",
+            "comments": "Secondary NIC for Customers",
+            "apiVersion": "2017-06-01",
+            "location": "[resourceGroup().location]",
+            "scale": null,
+            "copy" : {
+                "name": "nic-interfaces",
+                "count": "[variables('tShirtSize').numberOfVMs]" 
+            },
+            "properties": {
+                "provisioningState": "Succeeded",
+                "ipConfigurations": [
+                    {
+                        "name": "ipconfig1",
+                        "etag": "W/\"ebec2a24-7e6f-4e72-af77-8ca31e91c7a7\"",
+                        "properties": {
+                            "privateIPAllocationMethod": "Dynamic",
+                            "subnet": {
+                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]"
+                            },
+                            "primary": false,
+                            "privateIPAddressVersion": "IPv4"
+                        }
+                    }
+                ],
+                "dnsSettings": {
+                    "dnsServers": [],
+                    "appliedDnsServers": [],
+                    "internalDomainNameSuffix": "1ctjtyorjxru3j4esn4ffuxwne.gx.internal.cloudapp.net"
+                },
+                "enableAcceleratedNetworking": false,
+                "enableIPForwarding": false,
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_VPNNSG_name'))]"
+                },
+                "primary": false,
+                "virtualMachine": {
+                    "id": "[resourceId('Microsoft.Compute/virtualMachines', concat(variables('vm_name'),'-ha-up', copyIndex(1)))]"
+                }
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]"
+            ]
+        }
+    ],
+    "outputs": {
+        "tritonMangerIp": {
+            "type": "string",
+            "value": "[parameters('tritonManagerIp')]"
+        },
+        "registrationToken": {
+            "type": "string",
+            "value": "[parameters('registrationToken')]"
+        }
+    }
+}
