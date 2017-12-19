@@ -6,7 +6,7 @@
             "defaultValue": "centralus",
             "type": "string"
         },
-        "enableloadBalancer": {
+        "enableLoadBalancer": {
             "defaultValue": false,
             "type": "bool"
         }
@@ -17,9 +17,24 @@
     },
     "resources" : [
         {
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[variables('publicIPAddresses_lbip_name')]",
+            "apiVersion": "2017-06-01",
+            "location": "[parameters('deployRegion')]",
+            "condition": "[parameters('enableLoadBalancer')]",
+            "scale": null,
+            "properties": {
+                "publicIPAddressVersion": "IPv4",
+                "publicIPAllocationMethod": "Static",
+                "idleTimeoutInMinutes": 4
+            },
+            "dependsOn": []
+        },
+        {
             "type": "Microsoft.Network/loadBalancers",
             "name": "[variables('loadBalancers_esgLoadBalancer_name')]",
             "apiVersion": "2017-06-01",
+            "condition": "[parameters('enableLoadBalancer')]",
             "location": "[parameters('deployRegion')]",
             "scale": null,
             "properties": {
@@ -103,26 +118,12 @@
             "dependsOn": [
                 "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_lbip_name'))]"
             ]
-        },
-        {
-            "type": "Microsoft.Network/publicIPAddresses",
-            "name": "[variables('publicIPAddresses_lbip_name')]",
-            "apiVersion": "2017-06-01",
-            "location": "[parameters('deployRegion')]",
-            "condition": "[parameters('enableLoadBalancer')]",
-            "scale": null,
-            "properties": {
-                "publicIPAddressVersion": "IPv4",
-                "publicIPAllocationMethod": "Static",
-                "idleTimeoutInMinutes": 4
-            },
-            "dependsOn": []
         }
     ],
     "outputs":{
         "loadBalancerResourceID": {
             "type": "string",
-            "value": "[resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_esgLoadBalancer_name'))]"
+            "value": "[if(parameters('enableLoadBalancer'), resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_esgLoadBalancer_name')), '')]"
         }
     }
 }

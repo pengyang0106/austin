@@ -95,7 +95,7 @@
         "subnets_ESG2Subnet_name": "ESG2Subnet",
         "subnets_GatewaySubnet_name": "GatewaySubnet",
         "networkSecurityGroups_VPNNSG_name": "VPNNSG",
-        "customData": "[base64(concat(parameters('tritonManagerIp'),' ',parameters('registrationToken')))]"
+        "customData": "[base64(concat(parameters('tritonManagerIp'), ':', parameters('registrationToken')))]"
     },
     "resources": [
         {
@@ -127,7 +127,7 @@
               },
               "parameters": {
                  "deployRegion": {"value": "[parameters('deployRegion')]"},
-                 "enableLoadBalancer": {"value": "[variables('tShirtSize').enableLoadBalancer]"}
+                 "enableLoadBalancer": {"value": "[variables('tshirtSize').enableLoadBalancer]"}
                }
             }
          },         
