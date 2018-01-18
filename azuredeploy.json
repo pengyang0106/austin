@@ -54,7 +54,7 @@
             "numberOfVMs": 2,
             "vmSize": "Standard_A3",
             "enableAvailabilitySet": true,
-            "enableVPNGateway": false,
+            "enableVPNGateway": true,
             "enableLoadBalancer": true
         },
         "tshirtSizeMedium": {
@@ -135,7 +135,7 @@
                 "resourceGuid": "e199a6d8-4dd1-4ee3-a7c4-937c52d2f66c",
                 "addressSpace": {
                     "addressPrefixes": [
-                        "193.168.0.0/16"
+                        "172.18.0.0/16"
                     ]
                 },
                 "subnets": [
@@ -143,7 +143,7 @@
                         "name": "[concat(parameters('virtualNetwork_name'),'Subnet')]",
                         "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
                         "properties": {
-                            "addressPrefix": "193.168.1.0/24",
+                            "addressPrefix": "172.18.1.0/24",
                             "networkSecurityGroup": {
                                 "id": "[reference('sharedResourcesTemplate').outputs.nsgResourceID.value]"
                             }
@@ -154,14 +154,14 @@
                         "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
                         "properties": {
 
-                            "addressPrefix": "193.168.0.0/24"
+                            "addressPrefix": "172.18.254.0/29"
                         }
                     },
                     {
                         "name": "[variables('subnets_ESG2Subnet_name')]",
                         "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
                         "properties": {
-                            "addressPrefix": "193.168.3.0/24"
+                            "addressPrefix": "172.18.3.0/24"
                         }
                     }
                 ],
@@ -648,7 +648,7 @@
                 },
                 "bgpSettings": {
                     "asn": 65515,
-                    "bgpPeeringAddress": "193.168.0.254",
+                    "bgpPeeringAddress": "172.21.254.6",
                     "peerWeight": 0
                 }
             },
@@ -663,7 +663,7 @@
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
-                "addressPrefix": "193.168.1.0/24",
+                "addressPrefix": "172.18.1.0/24",
                 "networkSecurityGroup": {
                     "id": "[reference('sharedResourcesTemplate').outputs.nsgResourceID.value]"
                 }
@@ -679,7 +679,7 @@
             "apiVersion": "2017-06-01",
             "scale": null,
             "properties": {
-                "addressPrefix": "193.168.0.0/24"
+                "addressPrefix": "172.18.254.0/29"
             },
             "dependsOn": [
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]"
