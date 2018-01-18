@@ -249,30 +249,6 @@
                     }
                 }
             },
-            "resources" : [
-                    {
-                        "name": "registerWithTritonHA",
-                        "type": "extensions",
-                        "condition": "[variables('tShirtSize').enableAvailabilitySet]",
-                        "location": "[resourceGroup().location]",
-                        "apiVersion": "2017-03-30",
-                        "properties": {
-                            "publisher": "Microsoft.Azure.Extensions",
-                            "type": "CustomScript",
-                            "typeHandlerVersion": "2.0",
-                            "autoUpgradeMinorVersion": true,
-                           "settings": {
-                            "fileUris" : [
-                                "https://emaildev.blob.core.windows.net/esg1/scripts/privateIp.sh"
-                            ],   
-                            "commandToExecute": "[concat('./privateIp.sh ', parameters('tritonManagerIp'), ' ', parameters('registrationToken'))]"
-                           }
-                        },
-                        "dependsOn": [
-                            "[concat('Microsoft.Compute/virtualMachines/', variables('vm_name'), '-ha', copyIndex(1))]"
-                        ]
-                   }
-            ],
             "dependsOn": [
                 "sharedResourcesTemplate",
                 "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_ESG1AvailabilitySet_name'))]",
@@ -332,30 +308,6 @@
                     }
                 }
             },
-            "resources" : [
-                    {
-                        "name": "registerWithTriton",
-                        "type": "extensions",
-                        "condition": "[not(variables('tShirtSize').enableAvailabilitySet)]",
-                        "location": "[resourceGroup().location]",
-                        "apiVersion": "2017-03-30",
-                        "properties": {
-                            "publisher": "Microsoft.Azure.Extensions",
-                            "type": "CustomScript",
-                            "typeHandlerVersion": "2.0",
-                            "autoUpgradeMinorVersion": true,
-                           "settings": {
-                            "fileUris" : [
-                                "https://emaildev.blob.core.windows.net/esg1/scripts/privateIp.sh"
-                            ],   
-                            "commandToExecute": "[concat('./privateIp.sh ', parameters('tritonManagerIp'), ' ', parameters('registrationToken'))]"
-                           }
-                        },
-                        "dependsOn": [
-                            "[concat('Microsoft.Compute/virtualMachines/', variables('vm_name'), 1)]"
-                        ]
-                   }
-            ],
             "dependsOn": [
                 "sharedResourcesTemplate",
                 "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]",

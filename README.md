@@ -10,8 +10,6 @@ This is pretty particular to the ESG team's Azure setup, we'll work on making it
 - We expect the shared resources and load balancer templates to be uploaded in your storage account as a blob under `https://${storageAccountName}.blob.core.windows.net/esg1/templates/shared-resources.json` and `https://${storageAccountName}.blob.core.windows.net/esg1/templates/load-balancer.json`
 - We expect a virtual network exists matching the name given in the paramaters.json file (the customer will have already established a virtual network with a site-to-site VPN connection established).
 
-We expect privateIp.sh to be deployed to your storage account's blob storage under `/scripts/` ... this is run by the Microsoft ARM External Script Extension after VM provisioning.
-
 ## Deployment
 
 ```bash
