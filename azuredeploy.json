@@ -88,8 +88,6 @@
         "publicIPAddresses_esg1gatewaypublicIP_name": "esgGatewayPublicIP",
         "virtualNetworkGateways_VNetGatewayESG1_name": "VNetGatewayESG",
         "subnets_ESG1Subnet_name": "ESG1Subnet",
-        "subnets_ESG2Subnet_name": "ESG2Subnet",
-        "subnets_GatewaySubnet_name": "GatewaySubnet",
         "networkSecurityGroups_VPNNSG_name": "VPNNSG",
         "customData": "[base64(concat(parameters('tritonManagerIp'), ':', parameters('registrationToken')))]"
     },
@@ -124,53 +122,22 @@
                  "enableLoadBalancer": {"value": "[variables('tshirtSize').enableLoadBalancer]"}
                }
             }
-         },         
-        {
-            "type": "Microsoft.Network/virtualNetworks",
-            "name": "[parameters('virtualNetwork_name')]",
-            "apiVersion": "2017-06-01",
+         }, 
+         {
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetwork_name'), '/',variables('subnets_ESG1Subnet_name'))]",
+            "apiVersion" : "2015-06-15",
             "location": "[resourceGroup().location]",
-            "scale": null,
             "properties": {
-                "resourceGuid": "e199a6d8-4dd1-4ee3-a7c4-937c52d2f66c",
-                "addressSpace": {
-                    "addressPrefixes": [
-                        "172.18.0.0/16"
-                    ]
-                },
-                "subnets": [
-                    {
-                        "name": "[concat(parameters('virtualNetwork_name'),'Subnet')]",
-                        "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
-                        "properties": {
-                            "addressPrefix": "172.18.1.0/24",
-                            "networkSecurityGroup": {
-                                "id": "[reference('sharedResourcesTemplate').outputs.nsgResourceID.value]"
-                            }
-                        }
-                    },
-                    {
-                        "name": "GatewaySubnet",
-                        "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
-                        "properties": {
-
-                            "addressPrefix": "172.18.254.0/29"
-                        }
-                    },
-                    {
-                        "name": "[variables('subnets_ESG2Subnet_name')]",
-                        "etag": "W/\"81e18364-b3ba-427e-aca1-9102e40c4744\"",
-                        "properties": {
-                            "addressPrefix": "172.18.3.0/24"
-                        }
-                    }
-                ],
-                "virtualNetworkPeerings": []
+                "addressPrefix": "172.18.1.0/24",
+                "networkSecurityGroup": {
+                    "id": "[reference('sharedResourcesTemplate').outputs.nsgResourceID.value]"
+                }
             },
             "dependsOn": [
                 "sharedResourcesTemplate"
             ]
-        },
+        }, 
         {
             "type": "Microsoft.Compute/availabilitySets",
             "sku": {
@@ -252,7 +219,6 @@
             "dependsOn": [
                 "sharedResourcesTemplate",
                 "[resourceId('Microsoft.Compute/availabilitySets', variables('availabilitySets_ESG1AvailabilitySet_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic_primary_name'), '-ha', copyIndex(1)))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic_secondary_name'), '-ha', copyIndex(1)))]"
             ]
@@ -310,7 +276,6 @@
             },
             "dependsOn": [
                 "sharedResourcesTemplate",
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic_primary_name'), 1))]",
                 "[resourceId('Microsoft.Network/networkInterfaces', concat(variables('nic_secondary_name'),1))]"
             ]
@@ -541,100 +506,6 @@
             "dependsOn": [
                 "sharedResourcesTemplate",
                 "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_ESG1Subnet_name'))]"
-            ]
-        },
-            
-         {
-            "type": "Microsoft.Network/virtualNetworkGateways",
-            "name": "[variables('virtualNetworkGateways_VNetGatewayESG1_name')]",
-            "condition" : "[variables('tShirtSize').enableVPNGateway]",
-            "apiVersion": "2017-06-01",
-            "location": "[resourceGroup().location]",
-            "scale": null,
-            "properties": {
-                "resourceGuid": "11643302-03e9-4498-8964-0c1853246686",
-                "ipConfigurations": [
-                    {
-                        "name": "default",
-                        "etag": "W/\"79ce5726-dc29-4d7c-ba5c-32bb1855af60\"",
-                        "properties": {
-                            "privateIPAllocationMethod": "Dynamic",
-                            "publicIPAddress": {
-                                "id": "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_esg1gatewaypublicIP_name'))]"
-                            },
-                            "subnet": {
-                                "id": "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_GatewaySubnet_name'))]"
-                            }
-                        }
-                    }
-                ],
-                "sku": {
-                    "name": "Standard",
-                    "tier": "Standard",
-                    "capacity": 2
-                },
-                "gatewayType": "Vpn",
-                "vpnType": "RouteBased",
-                "enableBgp": false,
-                "activeActive": false,
-                "vpnClientConfiguration": {
-                    "vpnClientAddressPool": {
-                        "addressPrefixes": [
-                            "182.16.0.0/24"
-                        ]
-                    },
-                    "vpnClientProtocols": [
-                        "SSTP",
-                        "IkeV2"
-                    ],
-                    "vpnClientRootCertificates": [
-                        {
-                            "name": "RootCert1",
-                            "etag": "W/\"79ce5726-dc29-4d7c-ba5c-32bb1855af60\"",
-                            "properties": {
-                                "publicCertData": "MIIC7zCCAdegAwIBAgIQVBHUpmIs1IhDqergiU76fDANBgkqhkiG9w0BAQsFADAa MRgwFgYDVQQDDA9UQ0F6dXJlUm9vdENlcnQwHhcNMTcwNDA0MTU1OTQ0WhcNMTgw NDA0MTYxOTQ0WjAaMRgwFgYDVQQDDA9UQ0F6dXJlUm9vdENlcnQwggEiMA0GCSqG SIb3DQEBAQUAA4IBDwAwggEKAoIBAQDRKyJboLxaU7EC/p1FPQy1HNOqGi7Ymz+I 4zfxYegpT52HAzaOuxpQD69kYM9JdLU2cRLVNaG/M9WJdlHs8CcYJqmMAmMg3a/U gCW2vXNzhENbKiCHLdTwQZyN50IBQf7/VOd1sVdy9YRSOynarRPv1ehxX0MK4okJ K7MQ4dm/3NwMrwyf57IqzrAEZvWxz5/UD1gWwuPqYWYqYjKovIEROv+iG0iNmaz6 nZaJAXCV8HS7lNr6awBtq8swwka4ePYG8twMXXvcoMSOsMY6rq/YjB6bc4dGg5Td HYlyWazXg/eDvu1P7zDnbJ9uKfyNq4Uf4Lb+Kutk8e1fgrSrcA3VAgMBAAGjMTAv MA4GA1UdDwEB/wQEAwICBDAdBgNVHQ4EFgQUTz6CO8wg5zPFHtunGs4hOkdmiTQw DQYJKoZIhvcNAQELBQADggEBAB1z3d764RqZYh/A6RXZZs9vIYTH8RU4xg6NW4PS Es6/ks981L5cQjZ7U4gvYmlpeATiBO9cPbbEJaI43V2zsknfy3Fs+iCGe9HVw6lG 4WRggZvhEeCTrcjjfTrJ5MyZgzGNVqEFj3gALp3lD6Li15PDaTKHdGbYBxeIJEWQ 20FuMj2dkDCUZSkYeeViIv0kIO8lS0+Hog5iVygDT+mVqBFmwG/ow+thpAQtzkuO WFJwRR5gQ4h3PaGwiDQ8Wxt5o2UsO1ocEYC8A4VX6TnSzqjnDH1aIak/Aq+Wiiq4 +I0kbqPUdBAmwG1g5MMMGOJy2RabfpihNM6T1hCOoqJlhcc="
-                            }
-                        }
-                    ],
-                    "vpnClientRevokedCertificates": []
-                },
-                "bgpSettings": {
-                    "asn": 65515,
-                    "bgpPeeringAddress": "172.21.254.6",
-                    "peerWeight": 0
-                }
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/publicIPAddresses', variables('publicIPAddresses_esg1gatewaypublicIP_name'))]",
-                "[resourceId('Microsoft.Network/virtualNetworks/subnets', parameters('virtualNetwork_name'), variables('subnets_GatewaySubnet_name'))]"
-            ]
-        },
-        {
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetwork_name'), '/', variables('subnets_ESG1Subnet_name'))]",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "addressPrefix": "172.18.1.0/24",
-                "networkSecurityGroup": {
-                    "id": "[reference('sharedResourcesTemplate').outputs.nsgResourceID.value]"
-                }
-            },
-            "dependsOn": [
-                "sharedResourcesTemplate",
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]"
-            ]
-        },
-        {
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('virtualNetwork_name'), '/', variables('subnets_GatewaySubnet_name'))]",
-            "apiVersion": "2017-06-01",
-            "scale": null,
-            "properties": {
-                "addressPrefix": "172.18.254.0/29"
-            },
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetwork_name'))]"
             ]
         }
     ],
