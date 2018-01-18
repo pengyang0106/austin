@@ -17,7 +17,7 @@
             "name": "[variables('publicIPAddresses_lbip_name')]",
             "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
-            "condition": "[parameters('enableLoadBalancer')]",
+            "condition": "[variables('enableLoadBalancer')]",
             "scale": null,
             "properties": {
                 "publicIPAddressVersion": "IPv4",
@@ -30,7 +30,7 @@
             "type": "Microsoft.Network/loadBalancers",
             "name": "[variables('loadBalancers_esgLoadBalancer_name')]",
             "apiVersion": "2017-06-01",
-            "condition": "[parameters('enableLoadBalancer')]",
+            "condition": "[variables('enableLoadBalancer')]",
             "location": "[resourceGroup().location]",
             "scale": null,
             "properties": {
@@ -119,7 +119,7 @@
     "outputs":{
         "loadBalancerResourceID": {
             "type": "string",
-            "value": "[if(parameters('enableLoadBalancer'), resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_esgLoadBalancer_name')), '')]"
+            "value": "[if(variables('enableLoadBalancer'), resourceId('Microsoft.Network/loadBalancers', variables('loadBalancers_esgLoadBalancer_name')), '')]"
         }
     }
 }

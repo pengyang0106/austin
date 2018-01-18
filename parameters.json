@@ -2,17 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "tShirtSize": {
-            "value": "Small"
+        "numberOfVMs" : {
+            "value": 2
         },
         "storage_Account_name": {
             "value": "emaildev"
         },
         "tritonManagerIp" : {
             "value": "triton-registry-simulator.cfapps.io"
-        },
-        "registrationToken": {
-            "value": "ABC123"
         },
         "virtualNetwork_name": {
             "value": "ESG1"

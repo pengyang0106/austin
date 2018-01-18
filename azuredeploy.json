@@ -2,19 +2,9 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "tShirtSize": {
-            "defaultValue": "Small",
-            "type": "string",
-            "allowedValues": [
-                "Demo",
-                "Small",
-                "Medium",
-                "Large",
-                "XL"
-            ],
-            "metadata" : {
-                "Descrpition": "Size of Email Security Gateway deployment"
-            }
+        "numberOfVMs" : {
+            "defaultValue": 2,
+            "type": "int"
         },
         "storage_Account_name": {
             "defaultValue": "emaildev",
@@ -22,10 +12,6 @@
         },
         "tritonManagerIp" : {
             "defaultValue": "127.0.0.1",
-            "type": "string"
-        },
-        "registrationToken": {
-            "defaultValue": "",
             "type": "string"
         },
         "virtualNetwork_name": {
@@ -42,43 +28,9 @@
         }
     },
     "variables": {
-        "tShirtSize": "[variables(concat('tShirtSize', parameters('tShirtSize')))]",
-        "tshirtSizeDemo": {
-            "numberOfVMs": 1,
-            "vmSize": "Standard_A3",
-            "enableAvailabilitySet": false,
-            "enableVPNGateway": true,
-            "enableLoadBalancer": false
-        },
-        "tshirtSizeSmall": {
-            "numberOfVMs": 2,
-            "vmSize": "Standard_A3",
-            "enableAvailabilitySet": true,
-            "enableVPNGateway": true,
-            "enableLoadBalancer": true
-        },
-        "tshirtSizeMedium": {
-            "numberOfVMs": 3,
-            "vmSize": "Standard_A3",
-            "enableAvailabilitySet": true,
-            "enableVPNGateway": false,
-            "enableLoadBalancer": true
-
-        },
-        "tshirtSizeLarge": {
-            "numberOfVMs": 5,
-            "vmSize": "Standard_A3",
-            "enableAvailabilitySet":true,
-            "enableVPNGateway": false,
-            "enableLoadBalancer": true
-        },
-        "tshirtSizeXL": {
-            "numberOfVMs": 8,
-            "vmSize": "Standard_A3",
-            "enableAvailabilitySet": true,
-            "enableVPNGateway": false,
-            "enableLoadBalancer": true
-        },
+        "enableAvailabilitySet": "[greaterOrEquals(parameters('numberOfVMs'), 2)]",
+        "enableVPNGateway": "[greaterOrEquals(parameters('numberOfVMs'), 2)]",
+        "enableLoadBalancer": "[greaterOrEquals(parameters('numberOfVMs'), 2)]",
         "esg_image_name": "osdisk_2545",
         "vm_name": "esg-vm",
         "nic_primary_name": "primary-nic-vm",
@@ -88,8 +40,7 @@
         "publicIPAddresses_esg1gatewaypublicIP_name": "esgGatewayPublicIP",
         "virtualNetworkGateways_VNetGatewayESG1_name": "VNetGatewayESG",
         "subnets_ESG1Subnet_name": "ESG1Subnet",
-        "networkSecurityGroups_VPNNSG_name": "VPNNSG",
-        "customData": "[base64(concat(parameters('tritonManagerIp'), ':', parameters('registrationToken')))]"
+        "networkSecurityGroups_VPNNSG_name": "VPNNSG"
     },
     "resources": [
         {
@@ -119,7 +70,7 @@
                  "contentVersion":"1.0.0.0"
               },
               "parameters": {
-                 "enableLoadBalancer": {"value": "[variables('tshirtSize').enableLoadBalancer]"}
+                 "enableLoadBalancer": {"value": "[variables('enableLoadBalancer')]"}
                }
             }
          }, 
@@ -145,7 +96,7 @@
             },
             "name": "[variables('availabilitySets_ESG1AvailabilitySet_name')]",
             "apiVersion": "2016-04-30-preview",
-            "condition": "[variables('tShirtSize').enableAvailabilitySet]",
+            "condition": "[variables('enableAvailabilitySet')]",
             "location": "[resourceGroup().location]",
             "tags": {},
             "scale": null,
@@ -161,7 +112,7 @@
         {
             "comments" : "Virtual Machines inside Availability Set",
             "type": "Microsoft.Compute/virtualMachines",
-            "condition": "[variables('tShirtSize').enableAvailabilitySet]",
+            "condition": "[variables('enableAvailabilitySet')]",
             "name": "[concat(variables('vm_name'), '-ha', copyIndex(1))]",
             "apiVersion": "2016-04-30-preview",
             "location": "[resourceGroup().location]",
@@ -169,7 +120,7 @@
             "scale": null,
             "copy" : {
                 "name": "virtualmachines",
-                "count": "[variables('tShirtSize').numberOfVMs]"
+                "count": "[parameters('numberOfVMs')]"
             },
             "properties": {
                  "availabilitySet": {
@@ -190,7 +141,6 @@
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": false
                     },
-                    "customData": "[variables('customData')]",
                     "secrets": []
                 },
                 "networkProfile": {
@@ -226,7 +176,7 @@
         {
             "comments" : "Virtual Machine without Availability Set",
             "type": "Microsoft.Compute/virtualMachines",
-            "condition": "[not(variables('tShirtSize').enableAvailabilitySet)]",
+            "condition": "[not(variables('enableAvailabilitySet'))]",
             "name": "[concat(variables('vm_name'), 1)]",
             "apiVersion": "2016-04-30-preview",
             "location": "[resourceGroup().location]",
@@ -245,7 +195,6 @@
                     "computerName": "[concat(variables('vm_name'), 1)]",
                     "adminUsername": "[parameters('vmAdminUserName')]",
                     "adminPassword": "[parameters('vmAdminPassword')]",
-                    "customData": "[variables('customData')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": false
                     },
@@ -288,7 +237,7 @@
             "scale": null,
             "copy" : {
                 "name": "vmpublicips",
-                "count": "[variables('tShirtSize').numberOfVMs]"
+                "count": "[parameters('numberOfVMs')]"
             },
             "properties": {
                 "provisioningState": "Succeeded",
@@ -301,7 +250,7 @@
         {
             "type": "Microsoft.Network/publicIPAddresses",
             "name": "[variables('publicIPAddresses_esg1gatewaypublicIP_name')]",
-            "condition": "[variables('tShirtSize').enableVPNGateway]",
+            "condition": "[variables('enableVPNGateway')]",
             "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
             "scale": null,
@@ -318,7 +267,7 @@
             "name": "[concat(variables('nic_primary_name'), 1)]",
             "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
-            "condition": "[lessOrEquals(variables('tShirtSize').numberOfVMs, 1)]",
+            "condition": "[lessOrEquals(parameters('numberOfVMs'), 1)]",
             "scale": null,
             "properties": {
                 "ipConfigurations": [
@@ -363,7 +312,7 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "comments": "Secondary NIC for Demo",
-            "condition": "[lessOrEquals(variables('tShirtSize').numberOfVMs, 1)]",
+            "condition": "[lessOrEquals(parameters('numberOfVMs'), 1)]",
             "name": "[concat(variables('nic_secondary_name'), 1)]",
             "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
@@ -406,14 +355,14 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "comments": "Primary NIC for Customers",
-            "condition": "[greaterOrEquals(variables('tShirtSize').numberOfVMs, 2)]",
+            "condition": "[greaterOrEquals(parameters('numberOfVMs'), 2)]",
             "name": "[concat(variables('nic_primary_name'), '-ha' ,copyIndex(1))]",
             "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
             "scale": null,
             "copy" : {
                 "name":"pinterfaces",
-                "count": "[variables('tShirtSize').numberOfVMs]"
+                "count": "[parameters('numberOfVMs')]"
             },
             "properties": {
                 "ipConfigurations": [
@@ -463,14 +412,14 @@
         {
             "type": "Microsoft.Network/networkInterfaces",
             "name": "[concat(variables('nic_secondary_name'), '-ha', copyIndex(1))]",
-            "condition": "[greaterOrEquals(variables('tShirtSize').numberOfVMs, 2)]",
+            "condition": "[greaterOrEquals(parameters('numberOfVMs'), 2)]",
             "comments": "Secondary NIC for Customers",
             "apiVersion": "2017-06-01",
             "location": "[resourceGroup().location]",
             "scale": null,
             "copy" : {
                 "name": "nic-interfaces",
-                "count": "[variables('tShirtSize').numberOfVMs]" 
+                "count": "[parameters('numberOfVMs')]" 
             },
             "properties": {
                 "provisioningState": "Succeeded",
